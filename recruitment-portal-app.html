@@ -1,0 +1,1765 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Recruitment Portal | Find a role worth showing up for</title>
+    <meta
+      name="description"
+      content="Search thousands of open roles from teams that take hiring seriously. Filter by role, location, and how you want to work."
+    />
+    <meta name="theme-color" content="#0a0a0a" />
+    <link rel="canonical" href="https://example.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Recruitment Portal" />
+    <meta property="og:description" content="Find a role worth showing up for." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              paper: '#ffffff',
+              ink: '#0a0a0a',
+              graphite: '#141414',
+              smoke: '#737373',
+              mist: '#f4f4f5',
+              line: '#e5e5e5',
+            },
+            fontFamily: {
+              display: ['Archivo', 'system-ui', 'sans-serif'],
+              sans: ['Inter', 'system-ui', 'sans-serif'],
+              mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+            },
+          },
+        },
+      };
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Recruitment Portal",
+        "url": "https://example.com/",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://example.com/#/jobs?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+
+    <style>
+      :root {
+        --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      :focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 3px;
+        border-radius: 2px;
+      }
+      [data-page] {
+        display: none;
+      }
+      [data-page].active {
+        display: block;
+        animation: pageIn 0.5s var(--ease) both;
+      }
+      @keyframes pageIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.7s var(--ease),
+          transform 0.7s var(--ease);
+        transition-delay: var(--delay, 0ms);
+      }
+      .reveal.is-visible {
+        opacity: 1;
+        transform: none;
+      }
+      .shimmer {
+        position: relative;
+        overflow: hidden;
+        background: #f4f4f5;
+      }
+      .shimmer::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        transform: translateX(-100%);
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.65), transparent);
+        animation: shimmer 1.4s infinite;
+      }
+      @keyframes shimmer {
+        100% {
+          transform: translateX(100%);
+        }
+      }
+      .marquee {
+        display: flex;
+        width: max-content;
+        animation: marquee 50s linear infinite;
+      }
+      .marquee:hover {
+        animation-play-state: paused;
+      }
+      @keyframes marquee {
+        to {
+          transform: translateX(-50%);
+        }
+      }
+      .spinner {
+        width: 1rem;
+        height: 1rem;
+        border: 2px solid currentColor;
+        border-right-color: transparent;
+        border-radius: 9999px;
+        animation: spin 0.7s linear infinite;
+        display: inline-block;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .grid-lines {
+        background-image:
+          linear-gradient(to right, rgba(10, 10, 10, 0.04) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(10, 10, 10, 0.04) 1px, transparent 1px);
+        background-size: 64px 64px;
+      }
+      .toast {
+        animation: toastIn 0.35s var(--ease) both;
+      }
+      @keyframes toastIn {
+        from {
+          opacity: 0;
+          transform: translateY(16px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        [data-page].active,
+        .toast {
+          animation: none;
+        }
+        .reveal {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+        .marquee {
+          animation: none;
+        }
+        .shimmer::after {
+          animation: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="bg-paper font-sans text-ink antialiased">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-ink focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-paper"
+      >Skip to content</a
+    >
+    <div aria-live="polite" class="sr-only" id="liveRegion"></div>
+
+    <!-- ============ NAVBAR ============ -->
+    <header id="navbar" class="fixed inset-x-0 top-0 z-50 border-b border-transparent transition-all duration-300">
+      <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <a href="#/" class="font-display text-lg font-extrabold tracking-tight">
+          Recruitment<span class="text-smoke">Portal</span>
+        </a>
+        <nav aria-label="Primary" class="hidden items-center gap-1 md:flex">
+          <a href="#/jobs" data-nav="jobs" class="nav-link rounded-md px-3 py-2 text-sm font-medium text-smoke transition-colors hover:text-ink">Find jobs</a>
+          <a href="#/categories" data-nav="categories" class="nav-link rounded-md px-3 py-2 text-sm font-medium text-smoke transition-colors hover:text-ink">Categories</a>
+          <a href="#/companies" data-nav="companies" class="nav-link rounded-md px-3 py-2 text-sm font-medium text-smoke transition-colors hover:text-ink">Companies</a>
+          <a href="#/" data-scroll-to="stories" class="rounded-md px-3 py-2 text-sm font-medium text-smoke transition-colors hover:text-ink">Stories</a>
+        </nav>
+        <div class="hidden items-center gap-2 md:flex">
+          <a href="#/login" class="rounded-md px-4 py-2 text-sm font-medium text-ink transition-colors hover:bg-mist">Sign in</a>
+          <a href="#/register" class="rounded-md bg-ink px-4 py-2 text-sm font-semibold text-paper transition-transform hover:-translate-y-0.5">Get started</a>
+        </div>
+        <button id="menuBtn" class="inline-flex h-10 w-10 items-center justify-center rounded-md md:hidden" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+          <svg id="menuIcon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+          <svg id="closeIcon" class="hidden" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <nav id="mobileMenu" aria-label="Mobile" class="hidden border-b border-line bg-paper md:hidden">
+        <div class="flex flex-col gap-1 px-4 py-4">
+          <a href="#/jobs" class="rounded-md px-3 py-3 text-base font-medium hover:bg-mist">Find jobs</a>
+          <a href="#/categories" class="rounded-md px-3 py-3 text-base font-medium hover:bg-mist">Categories</a>
+          <a href="#/companies" class="rounded-md px-3 py-3 text-base font-medium hover:bg-mist">Companies</a>
+          <div class="mt-2 flex gap-2 border-t border-line pt-3">
+            <a href="#/login" class="flex-1 rounded-md border border-line px-4 py-3 text-center text-sm font-medium">Sign in</a>
+            <a href="#/register" class="flex-1 rounded-md bg-ink px-4 py-3 text-center text-sm font-semibold text-paper">Get started</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main" class="pt-16">
+      <!-- ============ HOME ============ -->
+      <div data-page="home">
+        <section class="relative overflow-hidden border-b border-line">
+          <div class="grid-lines absolute inset-0" aria-hidden="true"></div>
+          <div class="relative mx-auto max-w-7xl px-4 pb-16 pt-20 sm:px-6 lg:px-8 lg:pb-24 lg:pt-28">
+            <p class="reveal font-mono text-xs uppercase tracking-[0.25em] text-smoke">Jobs worth the move</p>
+            <h1 class="reveal mt-5 max-w-4xl font-display text-[clamp(2.5rem,7vw,5.5rem)] font-black leading-[0.98] tracking-tight" style="--delay: 60ms">
+              Find a role worth<br class="hidden sm:block" /> showing up for.
+            </h1>
+            <p class="reveal mt-6 max-w-xl text-base leading-relaxed text-smoke sm:text-lg" style="--delay: 120ms">
+              Search openings from teams that take hiring seriously. Filter by role, location, and how you want to work.
+            </p>
+            <div class="reveal mt-10 flex flex-wrap items-center gap-3" style="--delay: 180ms">
+              <a href="#/jobs" class="group inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3.5 text-sm font-semibold text-paper transition-transform hover:-translate-y-0.5">
+                Search jobs
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="transition-transform group-hover:translate-x-1" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+              <a href="#/categories" class="inline-flex items-center rounded-full border border-line px-6 py-3.5 text-sm font-semibold transition-colors hover:border-ink">Browse categories</a>
+            </div>
+            <dl class="reveal mt-16 grid max-w-2xl grid-cols-1 gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-3" style="--delay: 240ms">
+              <div class="bg-paper px-6 py-6"><dd class="font-display text-3xl font-extrabold tracking-tight" data-count="12480">0</dd><dt class="mt-1 font-mono text-xs uppercase tracking-widest text-smoke">Open roles</dt></div>
+              <div class="bg-paper px-6 py-6"><dd class="font-display text-3xl font-extrabold tracking-tight" data-count="3200" data-suffix="+">0</dd><dt class="mt-1 font-mono text-xs uppercase tracking-widest text-smoke">Companies</dt></div>
+              <div class="bg-paper px-6 py-6"><dd class="font-display text-3xl font-extrabold tracking-tight" data-count="48" data-suffix=" hrs">0</dd><dt class="mt-1 font-mono text-xs uppercase tracking-widest text-smoke">Median reply</dt></div>
+            </dl>
+          </div>
+          <div class="relative border-t border-line py-4">
+            <div class="flex items-center">
+              <span class="relative z-10 shrink-0 bg-paper pl-4 pr-5 font-mono text-xs uppercase tracking-widest text-smoke sm:pl-6 lg:pl-8">Trending</span>
+              <div class="relative flex-1 overflow-hidden">
+                <div class="pointer-events-none absolute inset-y-0 left-0 z-[5] w-10 bg-gradient-to-r from-paper to-transparent"></div>
+                <div class="marquee gap-3 pl-3" id="trendingMarquee" aria-hidden="true"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Home search -->
+        <section class="border-b border-line bg-mist py-16 sm:py-20" id="homeSearchSection">
+          <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="reveal"><p class="font-mono text-xs uppercase tracking-[0.25em] text-smoke">Search</p>
+              <h2 class="mt-3 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">Start with what you do.</h2></div>
+            <form id="homeSearchForm" class="reveal mt-8 rounded-2xl border border-line bg-paper p-3 shadow-sm sm:p-4" style="--delay: 80ms" novalidate>
+              <div class="grid grid-cols-1 gap-3 md:grid-cols-[1.4fr_1fr_1fr_auto]">
+                <div class="flex items-center gap-3 rounded-xl border border-line px-4 py-3 focus-within:border-ink">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-smoke" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+                  <label for="homeQ" class="sr-only">Job title or keyword</label>
+                  <input id="homeQ" type="text" placeholder="Job title or keyword" class="w-full bg-transparent text-sm outline-none placeholder:text-smoke" />
+                </div>
+                <div class="flex items-center gap-3 rounded-xl border border-line px-4 py-3 focus-within:border-ink">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-smoke" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                  <label for="homeLoc" class="sr-only">Location</label>
+                  <input id="homeLoc" type="text" placeholder="Location" class="w-full bg-transparent text-sm outline-none placeholder:text-smoke" />
+                </div>
+                <div class="flex items-center gap-3 rounded-xl border border-line px-4 py-3 focus-within:border-ink">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-smoke" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                  <label for="homeType" class="sr-only">Job type</label>
+                  <select id="homeType" class="w-full bg-transparent text-sm outline-none"><option value="">Any type</option><option>Full-time</option><option>Part-time</option><option>Contract</option><option>Internship</option></select>
+                </div>
+                <button id="homeSearchBtn" type="submit" class="inline-flex items-center justify-center gap-2 rounded-xl bg-ink px-7 py-3 text-sm font-semibold text-paper transition-transform hover:-translate-y-0.5"><span class="btn-label">Search</span></button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- Featured jobs -->
+        <section class="border-b border-line py-16 sm:py-20">
+          <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="reveal flex flex-wrap items-end justify-between gap-4">
+              <div><p class="font-mono text-xs uppercase tracking-[0.25em] text-smoke">Featured</p>
+                <h2 class="mt-3 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">Roles getting attention now.</h2></div>
+              <a href="#/jobs" class="group inline-flex items-center gap-2 text-sm font-semibold">View all jobs
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="transition-transform group-hover:translate-x-1" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div>
+            <div id="featuredSkeleton" class="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3" role="status" aria-busy="true" aria-label="Loading featured jobs"></div>
+            <div id="featuredGrid" class="mt-10 hidden grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"></div>
+          </div>
+        </section>
+
+        <!-- Categories preview -->
+        <section class="bg-ink py-16 text-paper sm:py-20">
+          <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="reveal flex flex-wrap items-end justify-between gap-4">
+              <div class="max-w-2xl"><p class="font-mono text-xs uppercase tracking-[0.25em] text-smoke">Browse by category</p>
+                <h2 class="mt-3 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">Pick a lane. We will show you the openings.</h2></div>
+              <a href="#/categories" class="group inline-flex items-center gap-2 text-sm font-semibold text-paper">All categories
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="transition-transform group-hover:translate-x-1" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div>
+            <div id="homeCategoryGrid" class="mt-10 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-white/15 bg-white/15 sm:grid-cols-2 lg:grid-cols-4"></div>
+          </div>
+        </section>
+
+        <!-- Companies preview -->
+        <section class="border-b border-line py-16 sm:py-20">
+          <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="reveal text-center"><p class="font-mono text-xs uppercase tracking-[0.25em] text-smoke">Companies hiring</p>
+              <h2 class="mt-3 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">Teams already posting roles.</h2></div>
+          </div>
+          <div class="mt-12 flex overflow-hidden border-y border-line py-8"><div class="marquee gap-16 px-8" id="companyMarquee" aria-hidden="true"></div></div>
+          <div class="mt-8 text-center"><a href="#/companies" class="text-sm font-semibold underline-offset-4 hover:underline">See all companies</a></div>
+        </section>
+
+        <!-- Stories -->
+        <section id="storiesAnchor" class="bg-mist py-16 sm:py-20">
+          <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="reveal max-w-2xl"><p class="font-mono text-xs uppercase tracking-[0.25em] text-smoke">Success stories</p>
+              <h2 class="mt-3 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">People who found the right room.</h2></div>
+            <div class="mt-10 grid grid-cols-1 gap-5 md:grid-cols-3" id="storiesGrid"></div>
+          </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="border-t border-line py-16 sm:py-20">
+          <div class="mx-auto flex max-w-7xl flex-col items-start gap-6 px-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+            <h2 class="reveal max-w-xl font-display text-3xl font-extrabold tracking-tight sm:text-4xl">Your next role is already posted.</h2>
+            <a href="#/register" class="reveal inline-flex items-center gap-2 rounded-full bg-ink px-7 py-4 text-sm font-semibold text-paper transition-transform hover:-translate-y-0.5" style="--delay: 80ms">Create your account
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </section>
+      </div>
+
+      <!-- ============ DASHBOARD ============ -->
+      <div data-page="dashboard">
+        <div class="flex min-h-dvh bg-mist">
+          <aside id="dashSidebar" class="fixed inset-y-0 left-0 z-40 flex w-72 -translate-x-full flex-col border-r border-line bg-paper transition-transform duration-300 lg:static lg:w-64 lg:translate-x-0">
+            <div class="flex h-16 items-center justify-between border-b border-line px-5">
+              <a href="#/" class="font-display text-lg font-extrabold tracking-tight">Recruitment<span class="text-smoke">Portal</span></a>
+              <button type="button" id="dashSidebarClose" class="text-smoke hover:text-ink lg:hidden" aria-label="Close menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+            </div>
+            <nav class="flex-1 space-y-1 overflow-y-auto p-3" aria-label="Dashboard">
+              <a href="#/dashboard" class="flex items-center gap-3 rounded-lg bg-ink px-3 py-2.5 text-sm font-semibold text-paper"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg> Dashboard</a>
+              <a href="#/jobs" class="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-smoke hover:bg-mist hover:text-ink"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg> Find jobs</a>
+              <a href="#/dashboard" data-scroll-to="dashApplications" class="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-smoke hover:bg-mist hover:text-ink"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2Z"/></svg> Applications</a>
+              <a href="#/dashboard" data-scroll-to="dashSaved" class="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-smoke hover:bg-mist hover:text-ink"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2Z"/></svg> Saved jobs</a>
+              <a href="#/companies" class="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-smoke hover:bg-mist hover:text-ink"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-3"/></svg> Companies</a>
+              <a href="#/categories" class="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-smoke hover:bg-mist hover:text-ink"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg> Categories</a>
+              <a href="#/profile" class="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-smoke hover:bg-mist hover:text-ink"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg> Profile</a>
+            </nav>
+            <div class="border-t border-line p-3">
+              <a href="#/profile" class="flex items-center gap-3 rounded-lg px-3 py-2 hover:bg-mist">
+                <span class="flex h-9 w-9 items-center justify-center rounded-full bg-ink text-sm font-bold text-paper">AL</span>
+                <div class="min-w-0"><p class="truncate text-sm font-semibold">Ada Lovelace</p><p class="truncate text-xs text-smoke">Product Designer</p></div>
+              </a>
+              <a href="#/login" class="mt-1 flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-smoke hover:bg-mist hover:text-ink"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg> Sign out</a>
+            </div>
+          </aside>
+          <div id="dashBackdrop" class="fixed inset-0 z-30 hidden bg-ink/40 lg:hidden"></div>
+
+          <div class="flex min-w-0 flex-1 flex-col">
+            <header class="sticky top-0 z-20 flex h-16 items-center justify-between gap-4 border-b border-line bg-paper/90 px-4 backdrop-blur sm:px-6">
+              <div class="flex items-center gap-3">
+                <button type="button" id="dashMenuBtn" class="text-ink lg:hidden" aria-label="Open menu" aria-expanded="false"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+                <div class="hidden items-center gap-2 rounded-lg border border-line px-3 py-2 sm:flex">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-smoke" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+                  <label for="dashSearch" class="sr-only">Search jobs</label>
+                  <input id="dashSearch" type="text" placeholder="Search jobs" class="w-40 bg-transparent text-sm outline-none placeholder:text-smoke lg:w-56" />
+                </div>
+              </div>
+              <div class="flex items-center gap-1">
+                <div class="relative">
+                  <button type="button" id="bellBtn" class="relative flex h-10 w-10 items-center justify-center rounded-lg text-ink hover:bg-mist" aria-label="Notifications" aria-expanded="false"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg><span id="bellDot" class="absolute right-2 top-2 h-2 w-2 rounded-full bg-ink ring-2 ring-paper"></span></button>
+                  <div id="bellMenu" class="absolute right-0 z-30 mt-2 hidden w-80 rounded-xl border border-line bg-paper p-2 shadow-lg">
+                    <div class="flex items-center justify-between px-2 py-1.5"><p class="text-sm font-semibold">Notifications</p><button type="button" data-mark-read class="text-xs font-medium text-smoke hover:text-ink">Mark all read</button></div>
+                    <div id="bellList" class="max-h-80 overflow-auto"></div>
+                  </div>
+                </div>
+                <a href="#/profile" aria-label="Your profile" class="flex h-9 w-9 items-center justify-center rounded-full bg-ink text-sm font-bold text-paper">AL</a>
+              </div>
+            </header>
+
+            <div class="flex-1 space-y-6 p-4 sm:p-6 lg:p-8">
+              <div class="flex flex-wrap items-end justify-between gap-4">
+                <div>
+                  <h1 tabindex="-1" id="dashGreeting" class="font-display text-2xl font-extrabold tracking-tight outline-none sm:text-3xl">Welcome back</h1>
+                  <p class="mt-1 text-sm text-smoke">Here is what is happening with your search.</p>
+                </div>
+                <a href="#/jobs" class="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-paper transition-transform hover:-translate-y-0.5">Find new roles <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+              </div>
+
+              <div class="flex flex-col gap-4 rounded-2xl border border-line bg-paper p-5 sm:flex-row sm:items-center sm:justify-between">
+                <div class="w-full">
+                  <div class="flex items-center justify-between"><p class="text-sm font-semibold">Profile strength</p><p class="font-mono text-sm">70%</p></div>
+                  <div class="mt-2 h-2 w-full overflow-hidden rounded-full bg-line"><div class="h-full rounded-full bg-ink" style="width:70%"></div></div>
+                  <p class="mt-2 text-xs text-smoke">Add your portfolio and a short bio to reach the top of recruiter searches.</p>
+                </div>
+                <a href="#/profile" class="shrink-0 rounded-full border border-line px-5 py-2.5 text-center text-sm font-semibold hover:border-ink">Complete profile</a>
+              </div>
+
+              <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
+                <div class="rounded-2xl border border-line bg-paper p-5">
+                  <div class="flex items-center justify-between"><span class="flex h-10 w-10 items-center justify-center rounded-lg bg-mist"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2Z"/></svg></span><span class="font-mono text-xs text-smoke">+3 wk</span></div>
+                  <p id="statApps" class="mt-4 font-display text-3xl font-extrabold tracking-tight">12</p>
+                  <p class="mt-1 text-sm text-smoke">Applications</p>
+                </div>
+                <div class="rounded-2xl border border-line bg-paper p-5">
+                  <div class="flex items-center justify-between"><span class="flex h-10 w-10 items-center justify-center rounded-lg bg-mist"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span><span class="font-mono text-xs text-smoke">2 soon</span></div>
+                  <p id="statInterviews" class="mt-4 font-display text-3xl font-extrabold tracking-tight">3</p>
+                  <p class="mt-1 text-sm text-smoke">Interviews</p>
+                </div>
+                <div class="rounded-2xl border border-line bg-paper p-5">
+                  <div class="flex items-center justify-between"><span class="flex h-10 w-10 items-center justify-center rounded-lg bg-mist"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2Z"/></svg></span></div>
+                  <p id="statSaved" class="mt-4 font-display text-3xl font-extrabold tracking-tight">0</p>
+                  <p class="mt-1 text-sm text-smoke">Saved jobs</p>
+                </div>
+                <div class="rounded-2xl border border-line bg-paper p-5">
+                  <div class="flex items-center justify-between"><span class="flex h-10 w-10 items-center justify-center rounded-lg bg-mist"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></span><span class="font-mono text-xs text-smoke">+18%</span></div>
+                  <p id="statViews" class="mt-4 font-display text-3xl font-extrabold tracking-tight">47</p>
+                  <p class="mt-1 text-sm text-smoke">Profile views</p>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+                <div class="space-y-6 lg:col-span-2">
+                  <section id="dashApplications" class="overflow-hidden rounded-2xl border border-line bg-paper">
+                    <div class="flex items-center justify-between border-b border-line px-5 py-4"><h2 class="font-display text-lg font-bold tracking-tight">Recent applications</h2><a href="#/jobs" class="text-sm font-medium text-smoke hover:text-ink">View all</a></div>
+                    <div id="appsList"></div>
+                  </section>
+                  <section id="dashRecommended">
+                    <div class="mb-4 flex items-center justify-between"><h2 class="font-display text-lg font-bold tracking-tight">Recommended for you</h2><a href="#/jobs" class="text-sm font-medium text-smoke hover:text-ink">See more</a></div>
+                    <div id="recoGrid" class="grid grid-cols-1 gap-4 sm:grid-cols-2"></div>
+                  </section>
+                </div>
+                <div class="space-y-6">
+                  <section id="dashNotifications" class="overflow-hidden rounded-2xl border border-line bg-paper">
+                    <div class="flex items-center justify-between border-b border-line px-5 py-4"><h2 class="font-display text-lg font-bold tracking-tight">Notifications</h2><button type="button" data-mark-read class="text-sm font-medium text-smoke hover:text-ink">Mark all read</button></div>
+                    <div id="notifList"></div>
+                  </section>
+                  <section id="dashSaved" class="overflow-hidden rounded-2xl border border-line bg-paper">
+                    <div class="flex items-center justify-between border-b border-line px-5 py-4"><h2 class="font-display text-lg font-bold tracking-tight">Saved jobs</h2><span id="savedCount" class="font-mono text-xs text-smoke">0</span></div>
+                    <div id="savedList"></div>
+                  </section>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ PROFILE ============ -->
+      <div data-page="profile">
+        <div class="min-h-dvh bg-mist">
+          <header class="sticky top-0 z-20 border-b border-line bg-paper/90 backdrop-blur">
+            <div class="mx-auto flex h-16 max-w-4xl items-center justify-between gap-4 px-4 sm:px-6">
+              <a href="#/dashboard" class="inline-flex items-center gap-1 text-sm font-medium text-smoke hover:text-ink"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> Dashboard</a>
+              <div class="flex items-center gap-3">
+                <span id="profileSaved" class="hidden text-xs text-smoke sm:block"></span>
+                <button type="button" data-save-profile class="inline-flex items-center justify-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-paper transition-transform hover:-translate-y-0.5"><span class="btn-label">Save changes</span></button>
+              </div>
+            </div>
+          </header>
+
+          <div class="mx-auto max-w-4xl space-y-6 px-4 py-8 sm:px-6">
+            <div>
+              <h1 tabindex="-1" class="font-display text-2xl font-extrabold tracking-tight outline-none sm:text-3xl">Your profile</h1>
+              <p class="mt-1 text-sm text-smoke">Keep this up to date. A complete profile ranks higher in recruiter searches.</p>
+            </div>
+
+            <section class="rounded-2xl border border-line bg-paper p-5 sm:p-6">
+              <h2 class="font-display text-lg font-bold tracking-tight">Personal details</h2>
+              <div class="mt-5 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+                <span id="avatarWrap" class="flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-full bg-ink text-2xl font-bold text-paper">AL</span>
+                <div>
+                  <button type="button" data-avatar class="rounded-full border border-line px-4 py-2 text-sm font-semibold hover:border-ink">Upload photo</button>
+                  <p class="mt-2 text-xs text-smoke">JPG or PNG, up to 5MB</p>
+                </div>
+                <input id="avatarInput" type="file" accept="image/*" class="hidden" />
+              </div>
+              <div class="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2">
+                <div><label class="text-sm font-medium">Full name</label><input type="text" placeholder="Ada Lovelace" class="mt-2 w-full rounded-md border border-line px-3 py-2.5 text-sm outline-none focus:border-ink" /></div><div><label class="text-sm font-medium">Headline</label><input type="text" placeholder="Senior Product Designer" class="mt-2 w-full rounded-md border border-line px-3 py-2.5 text-sm outline-none focus:border-ink" /></div><div><label class="text-sm font-medium">Email</label><input type="email" placeholder="you@company.com" class="mt-2 w-full rounded-md border border-line px-3 py-2.5 text-sm outline-none focus:border-ink" /></div><div><label class="text-sm font-medium">Phone</label><input type="tel" placeholder="+1 555 000 1234" class="mt-2 w-full rounded-md border border-line px-3 py-2.5 text-sm outline-none focus:border-ink" /></div><div><label class="text-sm font-medium">Date of birth</label><input type="date" placeholder="" class="mt-2 w-full rounded-md border border-line px-3 py-2.5 text-sm outline-none focus:border-ink" /></div>
+                <div><label class="text-sm font-medium">Gender</label><select class="mt-2 w-full rounded-md border border-line px-3 py-2.5 text-sm outline-none focus:border-ink"><option value="">Prefer not to say</option><option>Female</option><option>Male</option><option>Non-binary</option></select></div>
+                <div class="sm:col-span-2"><label class="text-sm font-medium">About</label><textarea rows="3" placeholder="A short summary of who you are and what you do." class="mt-2 w-full rounded-md border border-line px-3 py-2.5 text-sm outline-none focus:border-ink"></textarea></div>
+              </div>
+            </section>
+
+            <section class="rounded-2xl border border-line bg-paper p-5 sm:p-6">
+              <h2 class="font-display text-lg font-bold tracking-tight">Career details</h2>
+              <p class="mt-0.5 text-sm text-smoke">Helps us match you to the right roles.</p>
+              <div class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2">
+                <div><label class="text-sm font-medium">Current company</label><input type="text" placeholder="Monoline" class="mt-2 w-full rounded-md border border-line px-3 py-2.5 text-sm outline-none focus:border-ink" /></div>
+                <div><label class="text-sm font-medium">Notice period</label><select class="mt-2 w-full rounded-md border border-line px-3 py-2.5 text-sm outline-none focus:border-ink"><option>Immediate</option><option>15 days</option><option selected>1 month</option><option>2 months</option><option>3 months</option></select></div>
+                <div><label class="text-sm font-medium">Expected salary</label><input type="text" placeholder="e.g. $120k" class="mt-2 w-full rounded-md border border-line px-3 py-2.5 text-sm outline-none focus:border-ink" /></div><div><label class="text-sm font-medium">Preferred location</label><input type="text" placeholder="Remote, Berlin, London" class="mt-2 w-full rounded-md border border-line px-3 py-2.5 text-sm outline-none focus:border-ink" /></div>
+              </div>
+            </section>
+
+            <section class="rounded-2xl border border-line bg-paper p-5 sm:p-6">
+              <h2 class="font-display text-lg font-bold tracking-tight">Resume</h2>
+              <div id="resumeZone" class="mt-5 flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-line px-6 py-10 text-center transition-colors">
+                <svg class="h-7 w-7 text-smoke" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+                <p class="mt-3 text-sm font-medium">Drag and drop your resume</p>
+                <p class="mt-1 text-xs text-smoke">PDF or Word, up to 5MB</p>
+                <button type="button" data-choose-resume class="mt-4 rounded-full border border-line px-5 py-2 text-sm font-semibold hover:border-ink">Choose file</button>
+                <input id="resumeInput" type="file" accept=".pdf,.doc,.docx" class="hidden" />
+              </div>
+              <div id="resumeFile" class="mt-3 hidden items-center gap-3 rounded-xl border border-line p-3">
+                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-mist"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2Z"/></svg></span>
+                <div class="min-w-0 flex-1"><p id="resumeName" class="truncate text-sm font-medium">resume.pdf</p><p id="resumeMeta" class="text-xs text-smoke">0 KB</p></div>
+                <button type="button" data-remove-resume aria-label="Remove resume" class="flex h-8 w-8 items-center justify-center rounded-md text-smoke hover:bg-mist hover:text-ink"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+              </div>
+            </section>
+
+            <section class="rounded-2xl border border-line bg-paper p-5 sm:p-6">
+              <h2 class="font-display text-lg font-bold tracking-tight">Social links</h2>
+              <div class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2">
+                <div><label class="text-sm font-medium">LinkedIn</label><div class="mt-2 flex items-center gap-2 rounded-md border border-line px-3 focus-within:border-ink"><svg class="h-4 w-4 text-smoke" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.94 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0ZM3.5 8.5h3v12h-3v-12Zm5 0h2.9v1.6h.04c.4-.76 1.4-1.6 2.9-1.6 3.1 0 3.66 2 3.66 4.7v7.3h-3v-6.5c0-1.55-.03-3.55-2.16-3.55-2.16 0-2.5 1.7-2.5 3.44v6.6h-3v-12Z"/></svg><input type="url" placeholder="linkedin.com/in/you" class="w-full bg-transparent py-2.5 text-sm outline-none placeholder:text-smoke" /></div></div>
+                <div><label class="text-sm font-medium">GitHub</label><div class="mt-2 flex items-center gap-2 rounded-md border border-line px-3 focus-within:border-ink"><svg class="h-4 w-4 text-smoke" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.1-1.47-1.1-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg><input type="url" placeholder="github.com/you" class="w-full bg-transparent py-2.5 text-sm outline-none placeholder:text-smoke" /></div></div>
+                <div><label class="text-sm font-medium">Portfolio</label><div class="mt-2 flex items-center gap-2 rounded-md border border-line px-3 focus-within:border-ink"><svg class="h-4 w-4 text-smoke" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><input type="url" placeholder="yoursite.com" class="w-full bg-transparent py-2.5 text-sm outline-none placeholder:text-smoke" /></div></div>
+                <div><label class="text-sm font-medium">X / Twitter</label><div class="mt-2 flex items-center gap-2 rounded-md border border-line px-3 focus-within:border-ink"><svg class="h-4 w-4 text-smoke" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 3h3l-6.6 7.5L21.7 21h-6l-4.7-6-5.4 6H2.6l7.1-8L2.3 3h6.1l4.3 5.6L17.5 3Zm-1.05 16h1.66L7.6 4.7H5.8L16.45 19Z"/></svg><input type="text" placeholder="@you" class="w-full bg-transparent py-2.5 text-sm outline-none placeholder:text-smoke" /></div></div>
+              </div>
+            </section>
+
+            <section class="rounded-2xl border border-line bg-paper p-5 sm:p-6">
+              <h2 class="font-display text-lg font-bold tracking-tight">Skills</h2>
+              <div id="skillList" class="mt-5 flex flex-wrap gap-2"></div>
+              <div class="mt-4 flex gap-2">
+                <label for="skillInput" class="sr-only">Add a skill</label>
+                <input id="skillInput" type="text" placeholder="Add a skill and press Enter" class="w-full rounded-md border border-line px-3 py-2.5 text-sm outline-none focus:border-ink" />
+                <button type="button" data-add-skill class="shrink-0 rounded-md bg-ink px-4 py-2.5 text-sm font-semibold text-paper">Add</button>
+              </div>
+            </section>
+
+            <section class="rounded-2xl border border-line bg-paper p-5 sm:p-6">
+              <div class="flex items-center justify-between gap-3"><h2 class="font-display text-lg font-bold tracking-tight">Experience</h2><button type="button" data-add="exp" class="inline-flex items-center gap-1 rounded-full border border-line px-4 py-2 text-sm font-semibold hover:border-ink"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg> Add</button></div>
+              <div id="expList" class="mt-5 space-y-4"></div>
+            </section>
+
+            <section class="rounded-2xl border border-line bg-paper p-5 sm:p-6">
+              <div class="flex items-center justify-between gap-3"><h2 class="font-display text-lg font-bold tracking-tight">Education</h2><button type="button" data-add="edu" class="inline-flex items-center gap-1 rounded-full border border-line px-4 py-2 text-sm font-semibold hover:border-ink"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg> Add</button></div>
+              <div id="eduList" class="mt-5 space-y-4"></div>
+            </section>
+
+            <section class="rounded-2xl border border-line bg-paper p-5 sm:p-6">
+              <div class="flex items-center justify-between gap-3"><h2 class="font-display text-lg font-bold tracking-tight">Projects</h2><button type="button" data-add="proj" class="inline-flex items-center gap-1 rounded-full border border-line px-4 py-2 text-sm font-semibold hover:border-ink"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg> Add</button></div>
+              <div id="projList" class="mt-5 space-y-4"></div>
+            </section>
+
+            <section class="rounded-2xl border border-line bg-paper p-5 sm:p-6">
+              <div class="flex items-center justify-between gap-3"><h2 class="font-display text-lg font-bold tracking-tight">Certifications</h2><button type="button" data-add="cert" class="inline-flex items-center gap-1 rounded-full border border-line px-4 py-2 text-sm font-semibold hover:border-ink"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg> Add</button></div>
+              <div id="certList" class="mt-5 space-y-4"></div>
+            </section>
+
+            <section class="rounded-2xl border border-line bg-paper p-5 sm:p-6">
+              <div class="flex items-center justify-between gap-3"><h2 class="font-display text-lg font-bold tracking-tight">Languages</h2><button type="button" data-add="lang" class="inline-flex items-center gap-1 rounded-full border border-line px-4 py-2 text-sm font-semibold hover:border-ink"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg> Add</button></div>
+              <div id="langList" class="mt-5 space-y-4"></div>
+            </section>
+
+            <div class="flex items-center justify-end gap-3 pb-6">
+              <a href="#/dashboard" class="rounded-full border border-line px-6 py-3 text-sm font-semibold hover:border-ink">Cancel</a>
+              <button type="button" data-save-profile class="inline-flex items-center justify-center gap-2 rounded-full bg-ink px-7 py-3 text-sm font-semibold text-paper transition-transform hover:-translate-y-0.5"><span class="btn-label">Save changes</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ JOBS LISTING ============ -->
+      <div data-page="jobs">
+        <section class="border-b border-line bg-mist py-10 sm:py-12">
+          <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <p class="font-mono text-xs uppercase tracking-[0.25em] text-smoke">Find jobs</p>
+            <h1 tabindex="-1" class="mt-3 font-display text-3xl font-extrabold tracking-tight outline-none sm:text-4xl">Open roles</h1>
+            <form id="jobsSearchForm" class="mt-6 flex flex-col gap-3 rounded-2xl border border-line bg-paper p-3 sm:flex-row sm:p-4" novalidate>
+              <div class="flex flex-1 items-center gap-3 rounded-xl border border-line px-4 py-3 focus-within:border-ink">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-smoke" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+                <label for="jobsQ" class="sr-only">Keyword</label>
+                <input id="jobsQ" type="text" placeholder="Title, company, or skill" class="w-full bg-transparent text-sm outline-none placeholder:text-smoke" />
+              </div>
+              <button id="jobsSearchBtn" type="submit" class="inline-flex items-center justify-center gap-2 rounded-xl bg-ink px-7 py-3 text-sm font-semibold text-paper"><span class="btn-label">Search</span></button>
+            </form>
+          </div>
+        </section>
+        <section class="py-10 sm:py-12">
+          <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-[260px_1fr] lg:gap-8">
+              <aside id="jobsFilters" class="fixed inset-y-0 left-0 z-40 w-80 -translate-x-full overflow-y-auto border-r border-line bg-paper p-5 transition-transform duration-300 lg:static lg:z-auto lg:w-auto lg:translate-x-0 lg:overflow-visible lg:border-0 lg:bg-transparent lg:p-0">
+                <div class="mb-4 flex items-center justify-between lg:mb-5">
+                  <h2 class="font-display text-lg font-bold tracking-tight">Filters</h2>
+                  <button type="button" data-jobs-filter-close class="text-smoke hover:text-ink lg:hidden" aria-label="Close filters"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+                </div>
+                <div id="filterGroups" class="space-y-6"></div>
+                <button type="button" id="clearFilters" class="mt-6 w-full rounded-full border border-line px-4 py-2.5 text-sm font-semibold hover:border-ink">Clear all</button>
+              </aside>
+              <div id="jobsFilterBackdrop" class="fixed inset-0 z-30 hidden bg-ink/40 lg:hidden"></div>
+
+              <div class="min-w-0">
+                <div class="mb-5 flex flex-wrap items-center justify-between gap-3">
+                  <p id="jobsCount" class="font-mono text-xs uppercase tracking-widest text-smoke" role="status">Loading roles</p>
+                  <div class="flex items-center gap-2">
+                    <button type="button" data-jobs-filter-toggle class="inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 text-sm font-semibold hover:border-ink lg:hidden"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg> Filters</button>
+                    <label for="jobsSort" class="sr-only">Sort by</label>
+                    <select id="jobsSort" class="rounded-full border border-line bg-paper px-4 py-2 text-sm font-medium outline-none focus:border-ink"><option value="newest">Newest</option><option value="salary-desc">Salary: high to low</option><option value="salary-asc">Salary: low to high</option><option value="title">Title: A to Z</option></select>
+                  </div>
+                </div>
+                <div id="jobsActiveFilters" class="mb-5 hidden flex-wrap gap-2"></div>
+                <div id="jobsSkeleton" class="grid grid-cols-1 gap-5 sm:grid-cols-2" aria-hidden="true"></div>
+                <div id="jobsGrid" class="hidden grid-cols-1 gap-5 sm:grid-cols-2"></div>
+                <div id="jobsEmpty" class="hidden rounded-2xl border border-dashed border-line px-6 py-16 text-center">
+                  <h3 class="font-display text-lg font-semibold">No roles match those filters</h3>
+                  <p class="mt-1 text-sm text-smoke">Try a broader keyword or clear the filters.</p>
+                  <button type="button" data-clear-filters class="mt-6 rounded-full border border-line px-5 py-2.5 text-sm font-semibold hover:border-ink">Clear filters</button>
+                </div>
+                <nav id="jobsPagination" class="mt-8 hidden flex-col items-center justify-between gap-4 sm:flex-row" aria-label="Pagination"></nav>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ============ JOB DETAIL ============ -->
+      <div data-page="job">
+        <div id="jobDetail" class="mx-auto max-w-5xl px-4 py-10 sm:px-6 sm:py-14"></div>
+      </div>
+
+      <!-- ============ CATEGORIES ============ -->
+      <div data-page="categories">
+        <section class="border-b border-line py-12 sm:py-16">
+          <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <p class="font-mono text-xs uppercase tracking-[0.25em] text-smoke">Categories</p>
+            <h1 tabindex="-1" class="mt-3 font-display text-3xl font-extrabold tracking-tight outline-none sm:text-4xl">Browse by category</h1>
+            <p class="mt-3 max-w-xl text-smoke">Pick an area and jump straight to the open roles in it.</p>
+          </div>
+        </section>
+        <section class="py-12 sm:py-16">
+          <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div id="allCategoryGrid" class="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4"></div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ============ COMPANIES ============ -->
+      <div data-page="companies">
+        <section class="border-b border-line py-12 sm:py-16">
+          <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <p class="font-mono text-xs uppercase tracking-[0.25em] text-smoke">Companies</p>
+            <h1 tabindex="-1" class="mt-3 font-display text-3xl font-extrabold tracking-tight outline-none sm:text-4xl">Teams hiring now</h1>
+          </div>
+        </section>
+        <section class="py-12 sm:py-16">
+          <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div id="allCompanyGrid" class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"></div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ============ LOGIN ============ -->
+      <div data-page="login">
+        <section class="flex min-h-[calc(100dvh-4rem)] items-center justify-center px-4 py-12">
+          <div class="w-full max-w-sm">
+            <h1 tabindex="-1" class="font-display text-2xl font-extrabold tracking-tight outline-none sm:text-3xl">Welcome back</h1>
+            <p class="mt-2 text-sm text-smoke">Sign in to continue your job search.</p>
+            <button type="button" data-google class="mt-8 flex w-full items-center justify-center gap-2 rounded-xl border border-line px-4 py-3 text-sm font-semibold transition-colors hover:border-ink">
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 11v2.8h3.9c-.2 1-1.5 3-3.9 3-2.3 0-4.2-1.9-4.2-4.3S9.7 8.2 12 8.2c1.3 0 2.2.6 2.7 1.1l1.9-1.8C15.4 6.4 13.9 5.8 12 5.8c-3.6 0-6.5 2.9-6.5 6.5S8.4 18.8 12 18.8c3.8 0 6.3-2.6 6.3-6.4 0-.5 0-.8-.1-1.2H12z"/></svg>
+              <span class="btn-label">Continue with Google</span>
+            </button>
+            <div class="relative my-6"><div class="absolute inset-0 flex items-center" aria-hidden="true"><span class="w-full border-t border-line"></span></div><div class="relative flex justify-center"><span class="bg-paper px-3 text-xs uppercase tracking-widest text-smoke">or</span></div></div>
+            <form id="loginForm" novalidate class="space-y-5">
+              <div>
+                <label for="loginEmail" class="text-sm font-medium">Email</label>
+                <input id="loginEmail" name="email" type="email" autocomplete="email" placeholder="you@company.com" class="mt-2 w-full rounded-md border border-line px-3 py-2.5 text-sm outline-none focus:border-ink" />
+                <p class="err mt-1 hidden text-sm font-medium text-ink" data-err="email"></p>
+              </div>
+              <div>
+                <div class="flex items-center justify-between"><label for="loginPassword" class="text-sm font-medium">Password</label>
+                  <a href="#/forgot-password" class="text-sm font-medium text-smoke underline-offset-4 hover:text-ink hover:underline">Forgot password?</a></div>
+                <div class="relative mt-2">
+                  <input id="loginPassword" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" class="w-full rounded-md border border-line px-3 py-2.5 pr-10 text-sm outline-none focus:border-ink" />
+                  <button type="button" data-toggle-pw="loginPassword" class="absolute right-0 top-0 flex h-full w-10 items-center justify-center text-smoke hover:text-ink" aria-label="Show password" aria-pressed="false">
+                    <svg class="eye h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                    <svg class="eye-off hidden h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m3 3 18 18M10.6 10.6a3 3 0 0 0 4.2 4.2M9.9 4.2A10.9 10.9 0 0 1 12 4c6.5 0 10 7 10 7a18 18 0 0 1-2.7 3.7M6.6 6.6A18 18 0 0 0 2 11s3.5 7 10 7a10.9 10.9 0 0 0 3.5-.6"/></svg>
+                  </button>
+                </div>
+                <p class="err mt-1 hidden text-sm font-medium text-ink" data-err="password"></p>
+              </div>
+              <label class="flex cursor-pointer items-center gap-2 text-sm"><input id="loginRemember" type="checkbox" class="h-4 w-4 rounded border-line accent-ink" /> Remember me</label>
+              <button type="submit" class="flex w-full items-center justify-center gap-2 rounded-xl bg-ink px-4 py-3 text-sm font-semibold text-paper transition-transform hover:-translate-y-0.5"><span class="btn-label">Sign in</span></button>
+            </form>
+            <p class="mt-6 text-center text-sm text-smoke">New here? <a href="#/register" class="font-medium text-ink underline-offset-4 hover:underline">Create an account</a></p>
+          </div>
+        </section>
+      </div>
+
+      <!-- ============ REGISTER ============ -->
+      <div data-page="register">
+        <section class="flex min-h-[calc(100dvh-4rem)] items-center justify-center px-4 py-12">
+          <div class="w-full max-w-sm">
+            <div id="registerView">
+              <h1 tabindex="-1" class="font-display text-2xl font-extrabold tracking-tight outline-none sm:text-3xl">Create your account</h1>
+              <p class="mt-2 text-sm text-smoke">Set up a profile and start applying in minutes.</p>
+
+              <div id="registerError" class="mt-6 hidden items-start gap-2 rounded-xl border border-ink bg-ink px-4 py-3 text-sm text-paper" role="alert">
+                <svg class="mt-0.5 h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+                <span id="registerErrorMsg">Something went wrong.</span>
+              </div>
+
+              <form id="registerForm" novalidate class="mt-6 space-y-5">
+                <div>
+                  <label for="regName" class="text-sm font-medium">Full name</label>
+                  <input id="regName" name="name" type="text" autocomplete="name" placeholder="Ada Lovelace" class="mt-2 w-full rounded-md border border-line px-3 py-2.5 text-sm outline-none focus:border-ink" />
+                  <p class="err mt-1 hidden text-sm font-medium text-ink" data-err="name"></p>
+                </div>
+                <div>
+                  <label for="regEmail" class="text-sm font-medium">Email</label>
+                  <input id="regEmail" name="email" type="email" autocomplete="email" placeholder="you@company.com" class="mt-2 w-full rounded-md border border-line px-3 py-2.5 text-sm outline-none focus:border-ink" />
+                  <p class="err mt-1 hidden text-sm font-medium text-ink" data-err="email"></p>
+                </div>
+                <div>
+                  <label for="regMobile" class="text-sm font-medium">Mobile number</label>
+                  <input id="regMobile" name="mobile" type="tel" inputmode="tel" autocomplete="tel" placeholder="+1 555 000 1234" class="mt-2 w-full rounded-md border border-line px-3 py-2.5 text-sm outline-none focus:border-ink" />
+                  <p class="err mt-1 hidden text-sm font-medium text-ink" data-err="mobile"></p>
+                </div>
+                <div>
+                  <label for="regPassword" class="text-sm font-medium">Password</label>
+                  <div class="relative mt-2">
+                    <input id="regPassword" name="password" type="password" autocomplete="new-password" placeholder="At least 8 characters" class="w-full rounded-md border border-line px-3 py-2.5 pr-10 text-sm outline-none focus:border-ink" />
+                    <button type="button" data-toggle-pw="regPassword" class="absolute right-0 top-0 flex h-full w-10 items-center justify-center text-smoke hover:text-ink" aria-label="Show password" aria-pressed="false">
+                      <svg class="eye h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                      <svg class="eye-off hidden h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m3 3 18 18M10.6 10.6a3 3 0 0 0 4.2 4.2M9.9 4.2A10.9 10.9 0 0 1 12 4c6.5 0 10 7 10 7a18 18 0 0 1-2.7 3.7M6.6 6.6A18 18 0 0 0 2 11s3.5 7 10 7a10.9 10.9 0 0 0 3.5-.6"/></svg>
+                    </button>
+                  </div>
+                  <div id="pwMeter" class="mt-3 hidden">
+                    <div class="flex gap-1.5" aria-hidden="true">
+                      <span class="pw-bar h-1.5 flex-1 rounded-full bg-line"></span>
+                      <span class="pw-bar h-1.5 flex-1 rounded-full bg-line"></span>
+                      <span class="pw-bar h-1.5 flex-1 rounded-full bg-line"></span>
+                      <span class="pw-bar h-1.5 flex-1 rounded-full bg-line"></span>
+                    </div>
+                    <p class="mt-2 font-mono text-xs uppercase tracking-widest text-smoke">Strength: <span id="pwLabel" class="text-ink">Weak</span></p>
+                    <ul class="mt-2 grid grid-cols-2 gap-1 text-xs text-smoke">
+                      <li data-req="len" class="flex items-center gap-1.5"><span class="req-dot inline-block h-1.5 w-1.5 rounded-full bg-line"></span> 8+ characters</li>
+                      <li data-req="case" class="flex items-center gap-1.5"><span class="req-dot inline-block h-1.5 w-1.5 rounded-full bg-line"></span> Upper &amp; lower</li>
+                      <li data-req="num" class="flex items-center gap-1.5"><span class="req-dot inline-block h-1.5 w-1.5 rounded-full bg-line"></span> A number</li>
+                      <li data-req="sym" class="flex items-center gap-1.5"><span class="req-dot inline-block h-1.5 w-1.5 rounded-full bg-line"></span> A symbol</li>
+                    </ul>
+                  </div>
+                  <p class="err mt-1 hidden text-sm font-medium text-ink" data-err="password"></p>
+                </div>
+                <div>
+                  <label for="regConfirm" class="text-sm font-medium">Confirm password</label>
+                  <div class="relative mt-2">
+                    <input id="regConfirm" name="confirm" type="password" autocomplete="new-password" placeholder="Re-enter your password" class="w-full rounded-md border border-line px-3 py-2.5 pr-10 text-sm outline-none focus:border-ink" />
+                    <button type="button" data-toggle-pw="regConfirm" class="absolute right-0 top-0 flex h-full w-10 items-center justify-center text-smoke hover:text-ink" aria-label="Show password" aria-pressed="false">
+                      <svg class="eye h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                      <svg class="eye-off hidden h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m3 3 18 18M10.6 10.6a3 3 0 0 0 4.2 4.2M9.9 4.2A10.9 10.9 0 0 1 12 4c6.5 0 10 7 10 7a18 18 0 0 1-2.7 3.7M6.6 6.6A18 18 0 0 0 2 11s3.5 7 10 7a10.9 10.9 0 0 0 3.5-.6"/></svg>
+                    </button>
+                  </div>
+                  <p class="err mt-1 hidden text-sm font-medium text-ink" data-err="confirm"></p>
+                </div>
+                <div>
+                  <label class="flex items-start gap-2 text-sm">
+                    <input id="regTerms" name="terms" type="checkbox" class="mt-0.5 h-4 w-4 shrink-0 rounded border-line accent-ink" />
+                    <span>I agree to the <button type="button" data-doc="terms" class="font-medium text-ink underline underline-offset-4">Terms &amp; Conditions</button> and <button type="button" data-doc="privacy" class="font-medium text-ink underline underline-offset-4">Privacy Policy</button>.</span>
+                  </label>
+                  <p class="err mt-1 hidden text-sm font-medium text-ink" data-err="terms"></p>
+                </div>
+                <button type="submit" class="flex w-full items-center justify-center gap-2 rounded-xl bg-ink px-4 py-3 text-sm font-semibold text-paper transition-transform hover:-translate-y-0.5"><span class="btn-label">Create account</span></button>
+              </form>
+              <p class="mt-6 text-center text-sm text-smoke">Already have an account? <a href="#/login" class="font-medium text-ink underline-offset-4 hover:underline">Sign in</a></p>
+            </div>
+
+            <div id="registerSuccess" class="hidden text-center">
+              <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-ink text-paper"><svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div>
+              <h1 tabindex="-1" class="mt-6 font-display text-2xl font-extrabold tracking-tight outline-none sm:text-3xl">You are all set</h1>
+              <p class="mt-2 text-sm text-smoke">Your account has been created. Sign in and start applying right away.</p>
+              <div class="mt-8 flex flex-col gap-3">
+                <a href="#/login" class="rounded-xl bg-ink px-4 py-3 text-sm font-semibold text-paper">Go to sign in</a>
+                <a href="#/jobs" class="rounded-xl border border-line px-4 py-3 text-sm font-semibold hover:border-ink">Browse jobs</a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ============ FORGOT PASSWORD ============ -->
+      <div data-page="forgot">
+        <section class="flex min-h-[calc(100dvh-4rem)] items-center justify-center px-4 py-12">
+          <div class="w-full max-w-sm">
+            <a href="#/login" class="inline-flex items-center gap-1 text-sm text-smoke hover:text-ink">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> Back to sign in</a>
+            <h1 tabindex="-1" class="mt-6 font-display text-2xl font-extrabold tracking-tight outline-none sm:text-3xl">Reset your password</h1>
+            <p class="mt-2 text-sm text-smoke">Enter your email and we will send a reset link.</p>
+            <form id="forgotForm" novalidate class="mt-8 space-y-5">
+              <div>
+                <label for="forgotEmail" class="text-sm font-medium">Email</label>
+                <input id="forgotEmail" name="email" type="email" autocomplete="email" placeholder="you@company.com" class="mt-2 w-full rounded-md border border-line px-3 py-2.5 text-sm outline-none focus:border-ink" />
+                <p class="err mt-1 hidden text-sm font-medium text-ink" data-err="email"></p>
+              </div>
+              <button type="submit" class="flex w-full items-center justify-center gap-2 rounded-xl bg-ink px-4 py-3 text-sm font-semibold text-paper transition-transform hover:-translate-y-0.5"><span class="btn-label">Send reset link</span></button>
+            </form>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer id="footer" class="bg-ink text-paper">
+      <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 gap-10 md:grid-cols-5">
+          <div class="col-span-2">
+            <p class="font-display text-lg font-extrabold tracking-tight">Recruitment<span class="text-smoke">Portal</span></p>
+            <p class="mt-3 max-w-xs text-sm text-white/60">A focused job search built for people who care where they work.</p>
+            <form id="newsletter" class="mt-6 flex max-w-sm gap-2" novalidate>
+              <label for="newsEmail" class="sr-only">Email address</label>
+              <input id="newsEmail" type="email" placeholder="Email for new roles" class="w-full rounded-lg border border-white/20 bg-transparent px-4 py-2.5 text-sm outline-none placeholder:text-white/40 focus:border-white" />
+              <button type="submit" class="shrink-0 rounded-lg bg-paper px-4 py-2.5 text-sm font-semibold text-ink">Notify me</button>
+            </form>
+            <p id="newsMsg" class="mt-2 hidden text-xs text-white/60" role="status"></p>
+          </div>
+          <nav aria-label="For candidates"><p class="font-mono text-xs uppercase tracking-widest text-white/40">Candidates</p>
+            <ul class="mt-4 space-y-3 text-sm text-white/70"><li><a href="#/jobs" class="hover:text-paper">Browse jobs</a></li><li><a href="#/categories" class="hover:text-paper">Categories</a></li><li><a href="#/companies" class="hover:text-paper">Companies</a></li></ul></nav>
+          <nav aria-label="Account"><p class="font-mono text-xs uppercase tracking-widest text-white/40">Account</p>
+            <ul class="mt-4 space-y-3 text-sm text-white/70"><li><a href="#/dashboard" class="hover:text-paper">Dashboard</a></li><li><a href="#/login" class="hover:text-paper">Sign in</a></li><li><a href="#/register" class="hover:text-paper">Create account</a></li><li><a href="#/forgot-password" class="hover:text-paper">Reset password</a></li></ul></nav>
+          <nav aria-label="Company"><p class="font-mono text-xs uppercase tracking-widest text-white/40">Company</p>
+            <ul class="mt-4 space-y-3 text-sm text-white/70"><li><a href="#/" data-scroll-to="stories" class="hover:text-paper">Stories</a></li><li><a href="#/" class="hover:text-paper">Home</a></li></ul></nav>
+        </div>
+        <div class="mt-14 flex flex-col gap-4 border-t border-white/15 pt-8 text-sm text-white/50 sm:flex-row sm:items-center sm:justify-between">
+          <p>2026 Recruitment Portal. All rights reserved.</p>
+          <div class="flex gap-6"><a href="#/" class="hover:text-paper">Privacy</a><a href="#/" class="hover:text-paper">Terms</a></div>
+        </div>
+      </div>
+    </footer>
+
+    <div id="docModal" class="fixed inset-0 z-[90] hidden items-center justify-center bg-ink/50 p-4" role="dialog" aria-modal="true" aria-labelledby="docModalTitle">
+      <div class="max-h-[85vh] w-full max-w-lg overflow-auto rounded-2xl border border-line bg-paper p-6">
+        <div class="flex items-start justify-between gap-4">
+          <h2 id="docModalTitle" class="font-display text-xl font-bold tracking-tight">Terms</h2>
+          <button type="button" data-doc-close aria-label="Close" class="flex h-9 w-9 items-center justify-center rounded-md text-smoke hover:bg-mist hover:text-ink"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+        </div>
+        <div id="docModalBody" class="mt-4 space-y-3 text-sm leading-relaxed text-smoke"></div>
+        <div class="mt-6 flex justify-end"><button type="button" data-doc-close class="rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-paper">Got it</button></div>
+      </div>
+    </div>
+    <div id="toasts" class="fixed bottom-4 right-4 z-[80] flex flex-col gap-2"></div>
+
+    <script>
+      (function () {
+        'use strict';
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const $ = (s, r) => (r || document).querySelector(s);
+        const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
+
+        /* ---------- Data ---------- */
+        const jobs = [
+          { id: 'pd-monoline', title: 'Senior Product Designer', company: 'Monoline', loc: 'Remote', mode: 'Remote', level: 'Senior', type: 'Full-time', cat: 'Design', pay: '$120k - $150k', salaryNum: 135000, tags: ['Design', 'Figma'], age: '2d', postedDays: 2, desc: 'Own the end to end design of our hiring product, from first sketch to shipped flow. Partner with product and engineering to turn fuzzy problems into clean, usable interfaces.' },
+          { id: 'se-northwind', title: 'Staff Software Engineer', company: 'Northwind', loc: 'Berlin', mode: 'On-site', level: 'Lead', type: 'Full-time', cat: 'Engineering', pay: '€95k - €120k', salaryNum: 107000, tags: ['Go', 'Kubernetes'], age: '1d', postedDays: 1, desc: 'Lead the design of services that handle millions of applications a month. Set technical direction and mentor a team of strong engineers.' },
+          { id: 'da-aperture', title: 'Data Analyst', company: 'Aperture', loc: 'London', mode: 'Hybrid', level: 'Mid', type: 'Full-time', cat: 'Data & Analytics', pay: '£55k - £70k', salaryNum: 62000, tags: ['SQL', 'Python'], age: '4h', postedDays: 0, desc: 'Turn raw product data into decisions. Build dashboards, run analyses, and tell the story behind the numbers to non technical teams.' },
+          { id: 'bs-halcyon', title: 'Brand Strategist', company: 'Halcyon', loc: 'Austin', mode: 'Hybrid', level: 'Mid', type: 'Contract', cat: 'Marketing', pay: '$80k - $100k', salaryNum: 90000, tags: ['Brand', 'Content'], age: '3d', postedDays: 3, desc: 'Shape how the brand sounds and feels across every touchpoint. Define voice, run campaigns, and keep the story consistent.' },
+          { id: 'do-ironwood', title: 'DevOps Lead', company: 'Ironwood', loc: 'Remote', mode: 'Remote', level: 'Lead', type: 'Full-time', cat: 'Engineering', pay: '$135k - $165k', salaryNum: 150000, tags: ['AWS', 'CI/CD'], age: '5d', postedDays: 5, desc: 'Build the platform other engineers depend on. Own CI/CD, observability, and the path from commit to production.' },
+          { id: 'ae-borealis', title: 'Account Executive', company: 'Borealis', loc: 'New York', mode: 'On-site', level: 'Mid', type: 'Full-time', cat: 'Sales', pay: '$70k + comm', salaryNum: 70000, tags: ['SaaS', 'B2B'], age: '6h', postedDays: 0, desc: 'Run the full sales cycle for mid market accounts. Prospect, demo, negotiate, and close.' },
+          { id: 'pm-lumen', title: 'Product Manager', company: 'Lumen', loc: 'Toronto', mode: 'Hybrid', level: 'Senior', type: 'Full-time', cat: 'Product', pay: '$110k - $140k', salaryNum: 125000, tags: ['Roadmap', 'B2B'], age: '1w', postedDays: 7, desc: 'Own a core area of the product. Talk to users, set the roadmap, and ship things that move the metrics that matter.' },
+          { id: 'fe-cascade', title: 'Frontend Engineer', company: 'Cascade', loc: 'Remote', mode: 'Remote', level: 'Mid', type: 'Full-time', cat: 'Engineering', pay: '$100k - $130k', salaryNum: 115000, tags: ['React', 'TypeScript'], age: '2d', postedDays: 2, desc: 'Build fast, accessible interfaces with React and TypeScript. Care about the details that make a product feel good to use.' },
+          { id: 'ux-meridian', title: 'UX Researcher', company: 'Meridian', loc: 'Amsterdam', mode: 'On-site', level: 'Mid', type: 'Part-time', cat: 'Design', pay: '€45k - €60k', salaryNum: 52000, tags: ['Research', 'Interviews'], age: '3d', postedDays: 3, desc: 'Plan and run studies that answer the questions the team keeps arguing about. Turn interviews into clear, actionable insight.' },
+          { id: 'sec-veltrix', title: 'Security Engineer', company: 'Veltrix', loc: 'Singapore', mode: 'On-site', level: 'Senior', type: 'Full-time', cat: 'Engineering', pay: '$130k - $150k', salaryNum: 140000, tags: ['Security', 'Cloud'], age: '4d', postedDays: 4, desc: 'Harden our platform and lead the response when things get interesting. Threat modeling, reviews, and incident response.' },
+          { id: 'ds-aperture', title: 'Data Scientist', company: 'Aperture', loc: 'Remote', mode: 'Remote', level: 'Senior', type: 'Full-time', cat: 'Data & Analytics', pay: '$120k - $140k', salaryNum: 130000, tags: ['ML', 'Python'], age: '6d', postedDays: 6, desc: 'Build models that power matching and ranking. Own problems from framing through to a shipped, measured result.' },
+          { id: 'mk-halcyon', title: 'Marketing Manager', company: 'Halcyon', loc: 'London', mode: 'Hybrid', level: 'Mid', type: 'Full-time', cat: 'Marketing', pay: '£60k - £80k', salaryNum: 88000, tags: ['SEO', 'Content'], age: '1w', postedDays: 8, desc: 'Run campaigns end to end and own the numbers behind them. Channels, content, and a clear story.' },
+          { id: 'cs-borealis', title: 'Customer Success Manager', company: 'Borealis', loc: 'Remote', mode: 'Remote', level: 'Mid', type: 'Full-time', cat: 'Operations', pay: '$70k - $90k', salaryNum: 80000, tags: ['SaaS', 'Support'], age: '5d', postedDays: 5, desc: 'Own a book of accounts, drive adoption, and turn customers into advocates.' },
+          { id: 'fin-lumen', title: 'Financial Analyst', company: 'Lumen', loc: 'New York', mode: 'On-site', level: 'Mid', type: 'Full-time', cat: 'Finance', pay: '$85k - $105k', salaryNum: 95000, tags: ['Excel', 'Modeling'], age: '3d', postedDays: 3, desc: 'Build the models that guide planning. Partner with leaders to turn numbers into decisions.' },
+          { id: 'be-cascade', title: 'Backend Engineer', company: 'Cascade', loc: 'Remote', mode: 'Remote', level: 'Senior', type: 'Full-time', cat: 'Engineering', pay: '$130k - $160k', salaryNum: 145000, tags: ['Node', 'Postgres'], age: '2d', postedDays: 2, desc: 'Design and ship the services behind the product. Care about reliability and clean interfaces.' },
+          { id: 'pd-veltrix', title: 'Product Designer', company: 'Veltrix', loc: 'Berlin', mode: 'Hybrid', level: 'Mid', type: 'Full-time', cat: 'Design', pay: '€75k - €95k', salaryNum: 92000, tags: ['Figma', 'UI'], age: '1d', postedDays: 1, desc: 'Design flows that feel obvious. Work closely with engineering to ship and iterate fast.' },
+          { id: 'intern-monoline', title: 'Design Intern', company: 'Monoline', loc: 'Remote', mode: 'Remote', level: 'Entry', type: 'Internship', cat: 'Design', pay: '$30k - $40k', salaryNum: 35000, tags: ['Figma'], age: '2d', postedDays: 2, desc: 'Learn by shipping real work alongside senior designers. A summer of hands on projects.' },
+          { id: 'ops-ironwood', title: 'Operations Lead', company: 'Ironwood', loc: 'Austin', mode: 'On-site', level: 'Lead', type: 'Full-time', cat: 'Operations', pay: '$100k - $120k', salaryNum: 110000, tags: ['Process', 'People'], age: '6d', postedDays: 6, desc: 'Keep the engine running. Build process where it helps and remove it where it does not.' },
+          { id: 'sales-veltrix', title: 'Sales Development Rep', company: 'Veltrix', loc: 'Remote', mode: 'Remote', level: 'Entry', type: 'Full-time', cat: 'Sales', pay: '$50k - $60k', salaryNum: 55000, tags: ['Outbound', 'CRM'], age: '1d', postedDays: 1, desc: 'Open conversations with new accounts and set up the team to win them.' },
+          { id: 'pm-cascade', title: 'Associate Product Manager', company: 'Cascade', loc: 'Toronto', mode: 'Hybrid', level: 'Entry', type: 'Full-time', cat: 'Product', pay: '$75k - $90k', salaryNum: 82000, tags: ['Roadmap'], age: '4d', postedDays: 4, desc: 'Learn the craft on a real surface. Talk to users, scope work, and help ship it.' },
+          { id: 'ml-northwind', title: 'Machine Learning Engineer', company: 'Northwind', loc: 'Remote', mode: 'Remote', level: 'Senior', type: 'Full-time', cat: 'Data & Analytics', pay: '$140k - $170k', salaryNum: 155000, tags: ['PyTorch', 'MLOps'], age: '3d', postedDays: 3, desc: 'Take models from notebook to production and keep them healthy once they are there.' },
+        ];
+        const categories = [
+          { name: 'Engineering', count: '3,210' }, { name: 'Design', count: '1,140' },
+          { name: 'Product', count: '860' }, { name: 'Data & Analytics', count: '1,025' },
+          { name: 'Marketing', count: '1,480' }, { name: 'Sales', count: '2,060' },
+          { name: 'Operations', count: '740' }, { name: 'Finance', count: '590' },
+        ];
+        const companies = [
+          { name: 'Northwind', sector: 'Cloud infrastructure', open: 14 }, { name: 'Veltrix', sector: 'Fintech', open: 9 },
+          { name: 'Monoline', sector: 'Design tools', open: 6 }, { name: 'Aperture', sector: 'Analytics', open: 11 },
+          { name: 'Halcyon', sector: 'Media', open: 4 }, { name: 'Ironwood', sector: 'Developer tools', open: 8 },
+          { name: 'Lumen', sector: 'SaaS', open: 7 }, { name: 'Borealis', sector: 'Logistics', open: 13 },
+          { name: 'Cascade', sector: 'Healthtech', open: 5 }, { name: 'Meridian', sector: 'Education', open: 10 },
+        ];
+        const stories = [
+          { quote: 'I went from blind applications to three interviews in a week. The filters matched how I want to work.', name: 'Ananya R.', role: 'Product Designer at Monoline', initials: 'AR' },
+          { quote: 'Clean, fast, no noise. I could see salary ranges up front, which saved everyone time.', name: 'Marcus K.', role: 'Staff Engineer at Northwind', initials: 'MK' },
+          { quote: 'The companies here reply. A recruiter messaged me within two days of my first application.', name: 'Lena F.', role: 'Data Analyst at Aperture', initials: 'LF' },
+        ];
+        const arrow = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+
+        const jobState = { q: '', sort: 'newest', page: 1, pageSize: 6, types: new Set(), modes: new Set(), levels: new Set(), cats: new Set() };
+        const appliedJobs = new Set();
+
+        /* ---------- Templates ---------- */
+        function jobCard(j) {
+          return (
+            '<a href="#/jobs/' + j.id + '" class="group flex flex-col justify-between rounded-2xl border border-line bg-paper p-6 transition-all duration-300 hover:-translate-y-1 hover:border-ink">' +
+              '<div><div class="flex items-start justify-between gap-3"><div>' +
+                '<h3 class="font-display text-lg font-bold leading-tight tracking-tight">' + j.title + '</h3>' +
+                '<p class="mt-1 text-sm text-smoke">' + j.company + ' &middot; ' + j.loc + '</p></div>' +
+                '<span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-mist font-mono text-sm font-bold">' + j.company.charAt(0) + '</span></div>' +
+                '<div class="mt-4 flex flex-wrap gap-2">' + j.tags.map(t => '<span class="rounded-full border border-line px-2.5 py-0.5 text-xs">' + t + '</span>').join('') +
+                '<span class="rounded-full bg-mist px-2.5 py-0.5 text-xs">' + j.type + '</span></div></div>' +
+              '<div class="mt-6 flex items-center justify-between border-t border-line pt-4">' +
+                '<span class="font-mono text-sm font-medium">' + j.pay + '</span>' +
+                '<span class="inline-flex items-center gap-1 text-xs text-smoke">' + j.age + ' ago <span class="text-ink transition-transform group-hover:translate-x-1">' + arrow + '</span></span></div></a>'
+          );
+        }
+        function jobSkeleton() {
+          return '<div class="rounded-2xl border border-line bg-paper p-6"><div class="flex items-start justify-between"><div class="w-full"><div class="shimmer h-5 w-3/4 rounded"></div><div class="shimmer mt-2 h-3 w-1/2 rounded"></div></div><div class="shimmer h-10 w-10 shrink-0 rounded-lg"></div></div><div class="mt-4 flex gap-2"><div class="shimmer h-5 w-16 rounded-full"></div><div class="shimmer h-5 w-20 rounded-full"></div></div><div class="mt-6 flex items-center justify-between border-t border-line pt-4"><div class="shimmer h-4 w-24 rounded"></div><div class="shimmer h-4 w-12 rounded"></div></div></div>';
+        }
+        function categoryCardDark(c) {
+          return '<a href="#/jobs?cat=' + encodeURIComponent(c.name) + '" data-cat="' + c.name + '" class="cat-link group bg-ink p-7 transition-colors duration-300 hover:bg-graphite"><div class="flex items-center justify-between"><span class="font-display text-xl font-bold tracking-tight">' + c.name + '</span><span class="text-white/40 transition-transform group-hover:translate-x-1">' + arrow + '</span></div><p class="mt-2 font-mono text-sm text-white/50">' + c.count + ' open</p></a>';
+        }
+        function categoryCardLight(c) {
+          return '<a href="#/jobs?cat=' + encodeURIComponent(c.name) + '" data-cat="' + c.name + '" class="cat-link group bg-paper p-7 transition-colors duration-300 hover:bg-mist"><div class="flex items-center justify-between"><span class="font-display text-xl font-bold tracking-tight">' + c.name + '</span><span class="text-smoke transition-transform group-hover:translate-x-1">' + arrow + '</span></div><p class="mt-2 font-mono text-sm text-smoke">' + c.count + ' open</p></a>';
+        }
+        function companyCard(c) {
+          return '<a href="#/jobs?q=' + encodeURIComponent(c.name) + '" data-company="' + c.name + '" class="company-link group flex items-center justify-between rounded-2xl border border-line bg-paper p-6 transition-all duration-300 hover:-translate-y-1 hover:border-ink"><div class="flex items-center gap-4"><span class="flex h-12 w-12 items-center justify-center rounded-xl bg-ink font-display text-lg font-bold text-paper">' + c.name.charAt(0) + '</span><div><p class="font-display text-base font-bold tracking-tight">' + c.name + '</p><p class="text-sm text-smoke">' + c.sector + '</p></div></div><span class="text-right"><span class="block font-mono text-sm font-medium">' + c.open + '</span><span class="block text-xs text-smoke">open</span></span></a>';
+        }
+        function storyCard(s, i) {
+          return '<figure class="reveal flex flex-col justify-between rounded-2xl border border-line bg-paper p-7" style="--delay:' + i * 80 + 'ms"><blockquote class="text-lg font-medium leading-snug">' + s.quote + '</blockquote><figcaption class="mt-8 flex items-center gap-3"><span class="flex h-10 w-10 items-center justify-center rounded-full bg-ink font-mono text-sm font-bold text-paper">' + s.initials + '</span><span><span class="block text-sm font-semibold">' + s.name + '</span><span class="block text-xs text-smoke">' + s.role + '</span></span></figcaption></figure>';
+        }
+
+        /* ---------- Static content render ---------- */
+        $('#trendingMarquee').innerHTML = (function () {
+          const set = jobs.map(j => '<span class="whitespace-nowrap rounded-full border border-line px-4 py-1.5 text-sm">' + j.title + '</span>').join('');
+          return set + set;
+        })();
+        $('#homeCategoryGrid').innerHTML = categories.map(categoryCardDark).join('');
+        $('#allCategoryGrid').innerHTML = categories.map(categoryCardLight).join('');
+        $('#allCompanyGrid').innerHTML = companies.map(companyCard).join('');
+        $('#companyMarquee').innerHTML = (function () {
+          const set = companies.map(c => '<span class="shrink-0 font-display text-2xl font-bold tracking-tight text-smoke transition-colors duration-300 hover:text-ink">' + c.name + '</span>').join('');
+          return set + set;
+        })();
+        $('#storiesGrid').innerHTML = stories.map(storyCard).join('');
+
+        /* ---------- Featured (home) skeleton then load ---------- */
+        let featuredLoaded = false;
+        function loadFeatured() {
+          if (featuredLoaded) return;
+          const sk = $('#featuredSkeleton'), grid = $('#featuredGrid');
+          sk.innerHTML = Array.from({ length: 6 }).map(jobSkeleton).join('');
+          setTimeout(() => {
+            sk.classList.add('hidden'); sk.setAttribute('aria-busy', 'false');
+            grid.classList.remove('hidden'); grid.classList.add('grid');
+            grid.innerHTML = jobs.slice(0, 6).map(jobCard).join('');
+            featuredLoaded = true;
+          }, reduceMotion ? 0 : 1400);
+        }
+
+        /* ---------- Jobs listing ---------- */
+        function bookmarkIcon(filled) {
+          return '<svg class="h-5 w-5" viewBox="0 0 24 24" fill="' + (filled ? 'currentColor' : 'none') + '" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2Z"/></svg>';
+        }
+        function jobResultCard(j) {
+          const saved = savedJobs.includes(j.id);
+          const isApplied = appliedJobs.has(j.id);
+          return '<article class="group flex flex-col rounded-2xl border border-line bg-paper p-6 transition-all duration-300 hover:border-ink">' +
+            '<div class="flex items-start justify-between gap-3">' +
+              '<div class="flex items-center gap-3">' +
+                '<span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-ink font-display text-base font-bold text-paper">' + j.company.charAt(0) + '</span>' +
+                '<div><p class="text-sm font-semibold">' + j.company + '</p><p class="text-xs text-smoke">' + j.loc + ' &middot; ' + j.mode + '</p></div>' +
+              '</div>' +
+              '<button type="button" data-bookmark="' + j.id + '" aria-pressed="' + saved + '" aria-label="' + (saved ? 'Remove bookmark' : 'Bookmark this job') + '" class="flex h-9 w-9 items-center justify-center rounded-lg text-ink hover:bg-mist">' + bookmarkIcon(saved) + '</button>' +
+            '</div>' +
+            '<a href="#/jobs/' + j.id + '" class="mt-4 block"><h3 class="font-display text-lg font-bold leading-tight tracking-tight group-hover:underline">' + j.title + '</h3></a>' +
+            '<div class="mt-3 flex flex-wrap gap-2">' +
+              '<span class="rounded-full bg-mist px-2.5 py-0.5 text-xs">' + j.type + '</span>' +
+              '<span class="rounded-full border border-line px-2.5 py-0.5 text-xs">' + j.mode + '</span>' +
+              '<span class="rounded-full border border-line px-2.5 py-0.5 text-xs">' + j.level + '</span>' +
+              '<span class="rounded-full border border-line px-2.5 py-0.5 text-xs">' + j.cat + '</span>' +
+            '</div>' +
+            '<div class="mt-6 flex items-center justify-between gap-3 border-t border-line pt-4">' +
+              '<div><p class="font-mono text-sm font-medium">' + j.pay + '</p><p class="text-xs text-smoke">' + j.age + ' ago</p></div>' +
+              (isApplied
+                ? '<span class="inline-flex items-center gap-1.5 rounded-full bg-mist px-4 py-2 text-sm font-semibold text-smoke"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Applied</span>'
+                : '<button type="button" data-apply-job="' + j.id + '" class="rounded-full bg-ink px-5 py-2 text-sm font-semibold text-paper transition-transform hover:-translate-y-0.5"><span class="btn-label">Apply</span></button>') +
+            '</div></article>';
+        }
+
+        const jobFieldMap = { types: 'type', modes: 'mode', levels: 'level', cats: 'cat' };
+        const filterDefs = [
+          { key: 'types', label: 'Employment type', options: ['Full-time', 'Part-time', 'Contract', 'Internship'] },
+          { key: 'modes', label: 'Work mode', options: ['On-site', 'Hybrid', 'Remote'] },
+          { key: 'levels', label: 'Experience', options: ['Entry', 'Mid', 'Senior', 'Lead'] },
+          { key: 'cats', label: 'Category', options: categories.map(c => c.name) },
+        ];
+        function renderFilterGroups() {
+          $('#filterGroups').innerHTML = filterDefs.map(g => {
+            const items = g.options.map(opt => {
+              const count = jobs.filter(j => j[jobFieldMap[g.key]] === opt).length;
+              const checked = jobState[g.key].has(opt);
+              return '<label class="flex cursor-pointer items-center gap-2 py-1.5 text-sm"><input type="checkbox" data-filter="' + g.key + '" value="' + opt + '"' + (checked ? ' checked' : '') + ' class="h-4 w-4 rounded border-line accent-ink" /><span class="flex-1">' + opt + '</span><span class="font-mono text-xs text-smoke">' + count + '</span></label>';
+            }).join('');
+            return '<div><p class="mb-1 font-mono text-xs uppercase tracking-widest text-smoke">' + g.label + '</p>' + items + '</div>';
+          }).join('');
+        }
+        function filteredJobs() {
+          const q = jobState.q.toLowerCase();
+          const list = jobs.filter(j => {
+            const matchQ = !q || (j.title + ' ' + j.company + ' ' + j.tags.join(' ') + ' ' + j.loc + ' ' + j.cat).toLowerCase().includes(q);
+            const fType = jobState.types.size === 0 || jobState.types.has(j.type);
+            const fMode = jobState.modes.size === 0 || jobState.modes.has(j.mode);
+            const fLevel = jobState.levels.size === 0 || jobState.levels.has(j.level);
+            const fCat = jobState.cats.size === 0 || jobState.cats.has(j.cat);
+            return matchQ && fType && fMode && fLevel && fCat;
+          });
+          const s = jobState.sort;
+          list.sort((a, b) => {
+            if (s === 'salary-desc') return b.salaryNum - a.salaryNum;
+            if (s === 'salary-asc') return a.salaryNum - b.salaryNum;
+            if (s === 'title') return a.title.localeCompare(b.title);
+            return a.postedDays - b.postedDays;
+          });
+          return list;
+        }
+        function chip(group, value, label) {
+          return '<button type="button" data-remove-filter="' + group + '" data-value="' + value.replace(/"/g, '&quot;') + '" class="inline-flex items-center gap-1.5 rounded-full bg-ink py-1 pl-3 pr-2 text-xs font-medium text-paper">' + label + '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
+        }
+        function renderActiveFilters() {
+          const box = $('#jobsActiveFilters'); const chips = [];
+          if (jobState.q) chips.push(chip('q', jobState.q, 'Search: ' + jobState.q));
+          ['types', 'modes', 'levels', 'cats'].forEach(k => jobState[k].forEach(v => chips.push(chip(k, v, v))));
+          box.classList.toggle('hidden', chips.length === 0);
+          box.classList.toggle('flex', chips.length > 0);
+          box.innerHTML = chips.join('');
+        }
+        function renderPagination(total, pages, startIdx, shown) {
+          const pag = $('#jobsPagination');
+          pag.classList.remove('hidden'); pag.classList.add('flex');
+          let nums = '';
+          for (let i = 1; i <= pages; i++) {
+            const active = i === jobState.page;
+            nums += '<button type="button" data-page-num="' + i + '" aria-current="' + (active ? 'page' : 'false') + '" class="h-9 min-w-[2.25rem] rounded-md px-3 text-sm font-medium ' + (active ? 'bg-ink text-paper' : 'border border-line hover:border-ink') + '">' + i + '</button>';
+          }
+          pag.innerHTML =
+            '<p class="font-mono text-xs text-smoke">Showing ' + (startIdx + 1) + '-' + (startIdx + shown) + ' of ' + total + '</p>' +
+            '<div class="flex items-center gap-1.5"><button type="button" data-page-prev ' + (jobState.page === 1 ? 'disabled' : '') + ' class="h-9 rounded-md border border-line px-3 text-sm font-medium hover:border-ink disabled:opacity-40">Prev</button>' + nums +
+            '<button type="button" data-page-next ' + (jobState.page === pages ? 'disabled' : '') + ' class="h-9 rounded-md border border-line px-3 text-sm font-medium hover:border-ink disabled:opacity-40">Next</button></div>';
+        }
+        function renderJobs(showSkeleton) {
+          const sk = $('#jobsSkeleton'), grid = $('#jobsGrid'), empty = $('#jobsEmpty'), count = $('#jobsCount'), pag = $('#jobsPagination');
+          function paint() {
+            const list = filteredJobs();
+            const total = list.length;
+            const pages = Math.max(1, Math.ceil(total / jobState.pageSize));
+            if (jobState.page > pages) jobState.page = pages;
+            const startIdx = (jobState.page - 1) * jobState.pageSize;
+            const pageItems = list.slice(startIdx, startIdx + jobState.pageSize);
+            sk.classList.add('hidden');
+            renderActiveFilters();
+            count.textContent = total === 0 ? 'No roles found' : total + (total === 1 ? ' role' : ' roles') + ' found';
+            if (total === 0) {
+              grid.classList.add('hidden'); empty.classList.remove('hidden');
+              pag.classList.add('hidden'); pag.classList.remove('flex');
+              return;
+            }
+            empty.classList.add('hidden');
+            grid.classList.remove('hidden'); grid.classList.add('grid');
+            grid.innerHTML = pageItems.map(jobResultCard).join('');
+            renderPagination(total, pages, startIdx, pageItems.length);
+          }
+          if (showSkeleton && !reduceMotion) {
+            grid.classList.add('hidden'); empty.classList.add('hidden');
+            pag.classList.add('hidden'); pag.classList.remove('flex');
+            sk.classList.remove('hidden');
+            sk.innerHTML = Array.from({ length: jobState.pageSize }).map(jobSkeleton).join('');
+            count.textContent = 'Loading roles';
+            setTimeout(paint, 800);
+          } else { paint(); }
+        }
+        function resetJobFilters() { jobState.q = ''; jobState.types.clear(); jobState.modes.clear(); jobState.levels.clear(); jobState.cats.clear(); }
+        function clearJobFilters() { resetJobFilters(); jobState.page = 1; syncJobsUI(); renderJobs(false); }
+        function syncJobsUI() { $('#jobsQ').value = jobState.q; $('#jobsSort').value = jobState.sort; renderFilterGroups(); }
+        function openJobsFilters() { const a = $('#jobsFilters'); a.classList.add('translate-x-0'); a.classList.remove('-translate-x-full'); $('#jobsFilterBackdrop').classList.remove('hidden'); }
+        function closeJobsFilters() { const a = $('#jobsFilters'); a.classList.add('-translate-x-full'); a.classList.remove('translate-x-0'); $('#jobsFilterBackdrop').classList.add('hidden'); }
+        function scrollResultsTop() { const el = $('#jobsCount'); if (el) el.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' }); }
+
+        /* ---------- Job detail ---------- */
+        function renderJobDetail(id) {
+          const j = jobs.find(x => x.id === id);
+          const el = $('#jobDetail');
+          if (!j) { el.innerHTML = '<p class="text-smoke">Role not found. <a href="#/jobs" class="font-semibold underline">Back to jobs</a></p>'; return; }
+          const saved = savedJobs.includes(id);
+          const isApplied = appliedJobs.has(id);
+          const comp = companies.find(c => c.name === j.company) || { sector: '', open: 0 };
+          const yrs = j.level === 'Entry' ? '0 to 2' : j.level === 'Mid' ? '3 to 5' : j.level === 'Senior' ? '5 to 8' : '8+';
+          const responsibilities = [
+            'Own ' + j.title.toLowerCase() + ' work from first idea to shipped, measured result.',
+            'Partner with product, design, and engineering to turn fuzzy problems into clear outcomes.',
+            'Use ' + (j.tags[0] || 'your core skills') + ' day to day, and grow the rest as you go.',
+            'Set a high bar for quality and help raise it across the team.',
+            'Communicate clearly and keep stakeholders in the loop.',
+          ];
+          const requirements = [
+            yrs + ' years of relevant experience.',
+            'Strong skills in ' + j.tags.join(' and ') + '.',
+            'A track record of shipping work you are proud of.',
+            'Clear written and verbal communication.',
+            j.mode === 'Remote' ? 'Comfortable working remotely across time zones.' : 'Able to work ' + j.mode.toLowerCase() + ' from ' + j.loc + '.',
+          ];
+          const benefits = ['Competitive salary', 'Equity options', 'Health and dental cover', 'Flexible hours', 'Learning budget', 'Generous paid time off', 'Home office stipend', 'Annual team offsite'];
+          const bullets = arr => '<ul class="mt-4 space-y-2.5">' + arr.map(x => '<li class="flex gap-3 text-smoke"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-ink"></span><span>' + x + '</span></li>').join('') + '</ul>';
+          const sec = (title, body) => '<section class="mt-10"><h2 class="font-display text-xl font-bold tracking-tight">' + title + '</h2>' + body + '</section>';
+          const check = '<svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
+
+          const facts = [['Type', j.type], ['Work mode', j.mode], ['Experience', j.level], ['Location', j.loc], ['Posted', j.age + ' ago']];
+          const applyBtn = isApplied
+            ? '<span class="flex w-full items-center justify-center gap-1.5 rounded-xl bg-mist px-4 py-3 text-sm font-semibold text-smoke">' + check + ' Applied</span>'
+            : '<button type="button" data-apply-detail="' + id + '" class="flex w-full items-center justify-center gap-2 rounded-xl bg-ink px-4 py-3 text-sm font-semibold text-paper transition-transform hover:-translate-y-0.5"><span class="btn-label">Apply now</span></button>';
+          const saveBtn = '<button type="button" data-save-detail="' + id + '" aria-pressed="' + saved + '" class="flex w-full items-center justify-center gap-2 rounded-xl border px-4 py-3 text-sm font-semibold ' + (saved ? 'border-ink' : 'border-line hover:border-ink') + '">' + bookmarkIcon(saved) + '<span>' + (saved ? 'Saved' : 'Save job') + '</span></button>';
+          const shareBtn = '<button type="button" data-share-detail="' + id + '" class="flex w-full items-center justify-center gap-2 rounded-xl border border-line px-4 py-3 text-sm font-semibold hover:border-ink"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5 8.6 10.5"/></svg> Share job</button>';
+
+          el.innerHTML =
+            '<a href="#/jobs" class="inline-flex items-center gap-1 text-sm text-smoke hover:text-ink"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> All jobs</a>' +
+            '<div class="mt-6 flex items-start gap-4"><span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-ink font-display text-2xl font-bold text-paper">' + j.company.charAt(0) + '</span><div>' +
+              '<h1 tabindex="-1" class="font-display text-3xl font-extrabold tracking-tight outline-none">' + j.title + '</h1>' +
+              '<p class="mt-1 text-smoke"><a href="#/jobs?q=' + encodeURIComponent(j.company) + '" class="font-medium text-ink underline-offset-4 hover:underline">' + j.company + '</a> &middot; ' + j.loc + ' &middot; ' + j.mode + '</p></div></div>' +
+            '<div class="mt-5 flex flex-wrap gap-2"><span class="rounded-full bg-mist px-3 py-1 text-sm">' + j.type + '</span><span class="rounded-full border border-line px-3 py-1 text-sm">' + j.level + '</span><span class="rounded-full border border-line px-3 py-1 text-sm">' + j.cat + '</span>' + j.tags.map(t => '<span class="rounded-full border border-line px-3 py-1 text-sm">' + t + '</span>').join('') + '</div>' +
+
+            '<div class="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-[1fr_320px]">' +
+              '<aside class="lg:col-start-2 lg:row-start-1 lg:sticky lg:top-20 lg:self-start">' +
+                '<div class="rounded-2xl border border-line bg-paper p-6">' +
+                  '<p class="font-mono text-xs uppercase tracking-widest text-smoke">Salary</p>' +
+                  '<p class="mt-1 font-display text-2xl font-extrabold tracking-tight">' + j.pay + '</p>' +
+                  '<dl class="mt-5 space-y-3 border-t border-line pt-5">' + facts.map(f => '<div class="flex items-center justify-between gap-3"><dt class="text-sm text-smoke">' + f[0] + '</dt><dd class="text-sm font-medium">' + f[1] + '</dd></div>').join('') + '</dl>' +
+                  '<div class="mt-6 space-y-2">' + applyBtn + saveBtn + shareBtn + '</div>' +
+                '</div>' +
+              '</aside>' +
+              '<div class="lg:col-start-1 lg:row-start-1">' +
+                sec('About the role', '<p class="mt-4 leading-relaxed text-smoke">' + j.desc + '</p>') +
+                sec('Responsibilities', bullets(responsibilities)) +
+                sec('Requirements', bullets(requirements)) +
+                sec('Benefits', '<div class="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">' + benefits.map(b => '<div class="flex items-center gap-2.5 rounded-xl border border-line px-4 py-3 text-sm">' + check + '<span>' + b + '</span></div>').join('') + '</div>') +
+                sec('About ' + j.company, '<p class="mt-4 leading-relaxed text-smoke">' + j.company + ' is actively hiring' + (comp.sector ? ', building in ' + comp.sector.toLowerCase() : '') + '.' + (comp.open ? ' They have ' + comp.open + ' open roles right now.' : '') + '</p><a href="#/jobs?q=' + encodeURIComponent(j.company) + '" class="mt-4 inline-flex items-center gap-1 text-sm font-semibold">See all roles at ' + j.company + ' ' + arrow + '</a>') +
+              '</div>' +
+            '</div>';
+        }
+
+        /* ---------- Toast ---------- */
+        function toast(msg) {
+          const t = document.createElement('div');
+          t.className = 'toast rounded-xl bg-ink px-4 py-3 text-sm font-medium text-paper shadow-lg';
+          t.setAttribute('role', 'status');
+          t.textContent = msg;
+          $('#toasts').appendChild(t);
+          setTimeout(() => { t.style.opacity = '0'; t.style.transition = 'opacity .3s'; setTimeout(() => t.remove(), 300); }, 2600);
+        }
+
+        /* ---------- Button loading helper ---------- */
+        function btnLoading(btn, on, loadingText) {
+          const label = btn.querySelector('.btn-label') || btn;
+          if (on) {
+            btn.dataset.text = label.textContent;
+            btn.setAttribute('aria-busy', 'true'); btn.disabled = true;
+            label.innerHTML = '<span class="spinner align-[-2px]"></span><span class="ml-2">' + (loadingText || 'Loading') + '</span>';
+          } else {
+            btn.setAttribute('aria-busy', 'false'); btn.disabled = false;
+            if (btn.dataset.text) label.textContent = btn.dataset.text;
+          }
+        }
+
+        /* ---------- Validation (mirrors the Zod rules) ---------- */
+        const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        function showErr(form, name, msg) {
+          const p = $('[data-err="' + name + '"]', form);
+          const input = $('[name="' + name + '"]', form);
+          if (p) { p.textContent = msg; p.classList.toggle('hidden', !msg); }
+          if (input) input.setAttribute('aria-invalid', msg ? 'true' : 'false');
+        }
+        function validate(form, rules) {
+          let ok = true, firstBad = null;
+          Object.keys(rules).forEach(name => {
+            const input = $('[name="' + name + '"]', form);
+            const msg = rules[name](input ? input.value : '');
+            showErr(form, name, msg);
+            if (msg && !firstBad) firstBad = input;
+            if (msg) ok = false;
+          });
+          if (firstBad) firstBad.focus();
+          return ok;
+        }
+        const rules = {
+          email: v => (!v ? 'Email is required' : !emailRe.test(v) ? 'Enter a valid email address' : ''),
+          password: v => (!v ? 'Password is required' : v.length < 8 ? 'Password must be at least 8 characters' : ''),
+          name: v => (!v ? 'Name is required' : v.length < 2 ? 'Name is too short' : ''),
+        };
+
+        /* ---------- Password strength ---------- */
+        function pwChecks(v) {
+          return {
+            len: v.length >= 8,
+            mix: /[a-z]/.test(v) && /[A-Z]/.test(v),
+            num: /[0-9]/.test(v),
+            sym: /[^A-Za-z0-9]/.test(v),
+          };
+        }
+        function pwScore(c) { return (c.len ? 1 : 0) + (c.mix ? 1 : 0) + (c.num ? 1 : 0) + (c.sym ? 1 : 0); }
+        function updateStrength() {
+          const v = $('#regPassword').value;
+          const meter = $('#pwMeter');
+          meter.classList.toggle('hidden', v.length === 0);
+          const c = pwChecks(v), score = pwScore(c);
+          $$('.pw-bar', meter).forEach((b, i) => {
+            b.classList.toggle('bg-ink', i < score);
+            b.classList.toggle('bg-line', i >= score);
+          });
+          const labels = ['Weak', 'Weak', 'Fair', 'Good', 'Strong'];
+          $('#pwLabel').textContent = labels[score];
+          [['len', c.len], ['case', c.mix], ['num', c.num], ['sym', c.sym]].forEach(([k, on]) => {
+            const li = $('[data-req="' + k + '"]', meter); if (!li) return;
+            const dot = $('.req-dot', li);
+            li.classList.toggle('text-ink', on); li.classList.toggle('text-smoke', !on);
+            dot.classList.toggle('bg-ink', on); dot.classList.toggle('bg-line', !on);
+          });
+        }
+        $('#regPassword').addEventListener('input', updateStrength);
+
+        /* ---------- Terms / Privacy modal ---------- */
+        const docs = {
+          terms: { title: 'Terms & Conditions', body: ['This is placeholder text for a demo. No backend is connected.', 'By creating an account you agree to use the platform lawfully and to keep your login details secure.', 'These terms would normally cover acceptable use, account responsibilities, and how the service may change over time.'] },
+          privacy: { title: 'Privacy Policy', body: ['This is placeholder text for a demo. No backend is connected.', 'A real policy would describe what data is collected, how it is used, who it is shared with, and how long it is kept.', 'It would also explain your rights over your data and how to contact the team with questions.'] },
+        };
+        function openDoc(type) {
+          const d = docs[type]; if (!d) return;
+          $('#docModalTitle').textContent = d.title;
+          $('#docModalBody').innerHTML = d.body.map(p => '<p>' + p + '</p>').join('');
+          const m = $('#docModal'); m.classList.remove('hidden'); m.classList.add('flex');
+          const c = $('[data-doc-close]', m); if (c) c.focus();
+        }
+        function closeDoc() { const m = $('#docModal'); m.classList.add('hidden'); m.classList.remove('flex'); }
+        $('#docModal').addEventListener('click', e => { if (e.target.id === 'docModal') closeDoc(); });
+
+        /* ---------- Dashboard ---------- */
+        const jobById = id => jobs.find(j => j.id === id);
+        const applications = [
+          { id: 'pm-lumen', status: 'Interview', date: 'Jun 14' },
+          { id: 'fe-cascade', status: 'Screening', date: 'Jun 12' },
+          { id: 'pd-monoline', status: 'Applied', date: 'Jun 11' },
+          { id: 'da-aperture', status: 'Rejected', date: 'Jun 7' },
+        ];
+        const recommendedIds = ['se-northwind', 'ux-meridian'];
+        let savedJobs = ['do-ironwood', 'ae-borealis', 'bs-halcyon'];
+        const notifications = [
+          { icon: 'eye', text: 'Monoline viewed your application', time: '2h', unread: true },
+          { icon: 'star', text: 'New match: Frontend Engineer at Cascade', time: '5h', unread: true },
+          { icon: 'calendar', text: 'Interview scheduled with Lumen on Jun 20', time: '1d', unread: false },
+          { icon: 'bell', text: 'Your weekly job digest is ready', time: '2d', unread: false },
+        ];
+        const dashIcons = {
+          eye: '<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>',
+          star: '<path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5L12 3Z"/>',
+          calendar: '<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',
+          bell: '<path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/>',
+        };
+        const dIcon = n => '<svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">' + (dashIcons[n] || '') + '</svg>';
+        function statusBadge(s) {
+          const map = {
+            Applied: 'border border-line text-ink',
+            Screening: 'bg-mist text-ink',
+            Interview: 'bg-ink text-paper',
+            Offer: 'bg-ink text-paper',
+            Rejected: 'bg-mist text-smoke',
+          };
+          return '<span class="shrink-0 rounded-full px-2.5 py-1 text-xs font-medium ' + (map[s] || 'border border-line') + '">' + s + '</span>';
+        }
+        function appRow(a) {
+          const j = jobById(a.id); if (!j) return '';
+          return '<a href="#/jobs/' + j.id + '" class="flex items-center gap-4 border-b border-line px-5 py-4 transition-colors last:border-0 hover:bg-mist">' +
+            '<span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-mist font-mono text-sm font-bold">' + j.company.charAt(0) + '</span>' +
+            '<div class="min-w-0 flex-1"><p class="truncate text-sm font-semibold">' + j.title + '</p><p class="truncate text-xs text-smoke">' + j.company + ' &middot; ' + j.loc + '</p></div>' +
+            '<span class="hidden text-xs text-smoke sm:block">' + a.date + '</span>' + statusBadge(a.status) + '</a>';
+        }
+        function notifRow(n) {
+          return '<div class="flex items-start gap-3 border-b border-line px-5 py-3.5 last:border-0">' +
+            '<span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-mist">' + dIcon(n.icon) + '</span>' +
+            '<div class="min-w-0 flex-1"><p class="text-sm leading-snug">' + n.text + '</p><p class="mt-0.5 text-xs text-smoke">' + n.time + ' ago</p></div>' +
+            (n.unread ? '<span class="mt-1 h-2 w-2 shrink-0 rounded-full bg-ink"></span>' : '') + '</div>';
+        }
+        function savedRow(id) {
+          const j = jobById(id); if (!j) return '';
+          return '<div class="flex items-center gap-3 border-b border-line px-5 py-3.5 last:border-0">' +
+            '<a href="#/jobs/' + j.id + '" class="flex min-w-0 flex-1 items-center gap-3">' +
+            '<span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-mist font-mono text-sm font-bold">' + j.company.charAt(0) + '</span>' +
+            '<span class="min-w-0"><span class="block truncate text-sm font-semibold">' + j.title + '</span><span class="block truncate text-xs text-smoke">' + j.company + ' &middot; ' + j.loc + '</span></span></a>' +
+            '<button type="button" data-unsave="' + j.id + '" aria-label="Remove saved job" class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md text-smoke hover:bg-mist hover:text-ink"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>';
+        }
+        function renderApps() { $('#appsList').innerHTML = applications.map(appRow).join(''); }
+        function renderReco() { $('#recoGrid').innerHTML = recommendedIds.map(id => jobCard(jobById(id))).join(''); }
+        function renderNotifs() {
+          const html = notifications.map(notifRow).join('');
+          $('#notifList').innerHTML = html;
+          $('#bellList').innerHTML = html;
+        }
+        function renderSaved() {
+          $('#savedList').innerHTML = savedJobs.length
+            ? savedJobs.map(savedRow).join('')
+            : '<div class="px-5 py-10 text-center"><p class="text-sm font-semibold">No saved jobs yet</p><p class="mt-1 text-xs text-smoke">Save roles to revisit them here.</p><a href="#/jobs" class="mt-4 inline-block rounded-full border border-line px-4 py-2 text-sm font-semibold hover:border-ink">Browse jobs</a></div>';
+        }
+        function updateDashStats() {
+          $('#statSaved').textContent = savedJobs.length;
+          $('#savedCount').textContent = savedJobs.length;
+          $('#bellDot').classList.toggle('hidden', notifications.filter(n => n.unread).length === 0);
+        }
+        function setGreeting() {
+          const h = new Date().getHours();
+          const part = h < 12 ? 'Good morning' : h < 18 ? 'Good afternoon' : 'Good evening';
+          $('#dashGreeting').textContent = part + ', Ada';
+        }
+        renderApps(); renderReco(); renderNotifs(); renderSaved(); updateDashStats(); setGreeting();
+
+        function openDashNav() { const s = $('#dashSidebar'); s.classList.add('translate-x-0'); s.classList.remove('-translate-x-full'); $('#dashBackdrop').classList.remove('hidden'); $('#dashMenuBtn').setAttribute('aria-expanded', 'true'); }
+        function closeDashNav() { const s = $('#dashSidebar'); s.classList.add('-translate-x-full'); s.classList.remove('translate-x-0'); $('#dashBackdrop').classList.add('hidden'); $('#dashMenuBtn').setAttribute('aria-expanded', 'false'); }
+        function toggleBell(force) { const m = $('#bellMenu'); const open = force != null ? force : m.classList.contains('hidden'); m.classList.toggle('hidden', !open); $('#bellBtn').setAttribute('aria-expanded', String(open)); }
+        $('#dashMenuBtn').addEventListener('click', openDashNav);
+        $('#dashSidebarClose').addEventListener('click', closeDashNav);
+        $('#dashBackdrop').addEventListener('click', closeDashNav);
+
+        /* ---------- Profile ---------- */
+        function pField(label, ph, val) {
+          return '<div><label class="text-xs font-medium text-smoke">' + label + '</label><input type="text" value="' + (val || '') + '" placeholder="' + ph + '" class="mt-1 w-full rounded-md border border-line px-3 py-2 text-sm outline-none focus:border-ink" /></div>';
+        }
+        function pRow(inner) {
+          return '<div data-row class="relative rounded-xl border border-line p-4 pr-12">' + inner +
+            '<button type="button" data-remove-row aria-label="Remove entry" class="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-md text-smoke hover:bg-mist hover:text-ink"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>';
+        }
+        const profBuilders = {
+          exp: (d) => { d = d || {}; return pRow('<div class="grid grid-cols-1 gap-3 sm:grid-cols-2">' + pField('Job title', 'Senior Product Designer', d.title) + pField('Company', 'Monoline', d.company) + pField('Start', 'Jan 2022', d.start) + pField('End', 'Present', d.end) + '</div><div class="mt-3"><label class="text-xs font-medium text-smoke">Description</label><textarea rows="2" placeholder="What you worked on" class="mt-1 w-full rounded-md border border-line px-3 py-2 text-sm outline-none focus:border-ink">' + (d.desc || '') + '</textarea></div>'); },
+          edu: (d) => { d = d || {}; return pRow('<div class="grid grid-cols-1 gap-3 sm:grid-cols-2">' + pField('Degree', 'B.Des Interaction Design', d.degree) + pField('School', 'National Institute of Design', d.school) + pField('Field of study', 'Design', d.field) + pField('Years', '2015 - 2019', d.years) + '</div>'); },
+          proj: (d) => { d = d || {}; return pRow('<div class="grid grid-cols-1 gap-3 sm:grid-cols-2">' + pField('Project name', 'Open Hire', d.name) + pField('Link', 'github.com/you/project', d.link) + '</div><div class="mt-3"><label class="text-xs font-medium text-smoke">Description</label><textarea rows="2" placeholder="What it does and your role" class="mt-1 w-full rounded-md border border-line px-3 py-2 text-sm outline-none focus:border-ink">' + (d.desc || '') + '</textarea></div>'); },
+          cert: (d) => { d = d || {}; return pRow('<div class="grid grid-cols-1 gap-3 sm:grid-cols-3">' + pField('Certification', 'Google UX Design', d.name) + pField('Issuer', 'Coursera', d.issuer) + pField('Year', '2021', d.year) + '</div>'); },
+          lang: (d) => {
+            d = d || {};
+            const opts = ['Basic', 'Conversational', 'Fluent', 'Native'].map(o => '<option' + (o === d.prof ? ' selected' : '') + '>' + o + '</option>').join('');
+            return pRow('<div class="grid grid-cols-1 gap-3 sm:grid-cols-2"><div><label class="text-xs font-medium text-smoke">Language</label><input type="text" value="' + (d.lang || '') + '" placeholder="English" class="mt-1 w-full rounded-md border border-line px-3 py-2 text-sm outline-none focus:border-ink" /></div><div><label class="text-xs font-medium text-smoke">Proficiency</label><select class="mt-1 w-full rounded-md border border-line px-3 py-2 text-sm outline-none focus:border-ink">' + opts + '</select></div></div>');
+          },
+        };
+        const profContainers = { exp: '#expList', edu: '#eduList', proj: '#projList', cert: '#certList', lang: '#langList' };
+        function addProfRow(type, data) {
+          const c = $(profContainers[type]); if (!c) return;
+          c.insertAdjacentHTML('beforeend', profBuilders[type](data));
+          if (!data) { const inp = c.lastElementChild.querySelector('input'); if (inp) inp.focus(); }
+        }
+        // Seed example entries
+        addProfRow('exp', { title: 'Senior Product Designer', company: 'Monoline', start: 'Jan 2022', end: 'Present', desc: 'Led end to end design for the hiring product.' });
+        addProfRow('exp', { title: 'Product Designer', company: 'Halcyon', start: '2019', end: '2021', desc: 'Owned the design system and the marketing site.' });
+        addProfRow('edu', { degree: 'B.Des Interaction Design', school: 'National Institute of Design', field: 'Design', years: '2015 - 2019' });
+        addProfRow('proj', { name: 'Open Hire', link: 'github.com/you/open-hire', desc: 'An open source applicant tracker.' });
+        addProfRow('cert', { name: 'Google UX Design', issuer: 'Coursera', year: '2021' });
+        addProfRow('lang', { lang: 'English', prof: 'Native' });
+        addProfRow('lang', { lang: 'Hindi', prof: 'Fluent' });
+
+        // Skills
+        function skillChip(v) {
+          return '<span data-chip class="inline-flex items-center gap-1.5 rounded-full border border-line py-1 pl-3 pr-1.5 text-sm"><span>' + v + '</span><button type="button" data-remove-chip aria-label="Remove skill" class="flex h-5 w-5 items-center justify-center rounded-full text-smoke hover:bg-mist hover:text-ink"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></span>';
+        }
+        function addSkillFromInput() {
+          const inp = $('#skillInput'); const v = inp.value.trim();
+          if (!v) return;
+          $('#skillList').insertAdjacentHTML('beforeend', skillChip(v));
+          inp.value = ''; inp.focus();
+        }
+        ['Figma', 'Design systems', 'Prototyping', 'User research', 'HTML', 'CSS'].forEach(s => $('#skillList').insertAdjacentHTML('beforeend', skillChip(s)));
+        $('#skillInput').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); addSkillFromInput(); } });
+
+        // Resume
+        function fmtSize(b) { return b < 1024 ? b + ' B' : b < 1048576 ? Math.round(b / 1024) + ' KB' : (b / 1048576).toFixed(1) + ' MB'; }
+        function showResume(file) {
+          if (!file) return;
+          $('#resumeName').textContent = file.name;
+          $('#resumeMeta').textContent = fmtSize(file.size);
+          const f = $('#resumeFile'); f.classList.remove('hidden'); f.classList.add('flex');
+        }
+        $('#resumeInput').addEventListener('change', e => showResume(e.target.files[0]));
+        const rz = $('#resumeZone');
+        ['dragenter', 'dragover'].forEach(ev => rz.addEventListener(ev, e => { e.preventDefault(); rz.classList.add('border-ink'); rz.classList.remove('border-line'); }));
+        ['dragleave', 'drop'].forEach(ev => rz.addEventListener(ev, e => { e.preventDefault(); rz.classList.remove('border-ink'); rz.classList.add('border-line'); }));
+        rz.addEventListener('drop', e => { if (e.dataTransfer.files[0]) showResume(e.dataTransfer.files[0]); });
+
+        // Avatar
+        $('#avatarInput').addEventListener('change', e => {
+          const file = e.target.files[0]; if (!file) return;
+          const reader = new FileReader();
+          reader.onload = ev => { $('#avatarWrap').innerHTML = '<img src="' + ev.target.result + '" alt="Profile photo" class="h-full w-full object-cover" />'; };
+          reader.readAsDataURL(file);
+        });
+
+        /* ---------- Router ---------- */
+        const footer = $('#footer');
+        const authPages = ['login', 'register', 'forgot'];
+        function parse(hashStr) {
+          const raw = (hashStr != null ? hashStr : location.hash).replace(/^#\/?/, '');
+          const [pathPart, query] = raw.split('?');
+          const segs = pathPart.split('/').filter(Boolean);
+          const params = {};
+          if (query) query.split('&').forEach(kv => { const [k, v] = kv.split('='); params[k] = decodeURIComponent(v || ''); });
+          return { segs, params };
+        }
+        function setActiveNav(page) {
+          $$('.nav-link').forEach(a => {
+            const on = a.dataset.nav === page;
+            a.classList.toggle('text-ink', on);
+            a.classList.toggle('text-smoke', !on);
+          });
+        }
+        function route(hashStr) {
+          const { segs, params } = parse(hashStr);
+          let page = 'home', jobId = null;
+          if (segs[0] === 'jobs' && segs[1]) { page = 'job'; jobId = segs[1]; }
+          else if (segs[0] === 'jobs') page = 'jobs';
+          else if (segs[0] === 'categories') page = 'categories';
+          else if (segs[0] === 'companies') page = 'companies';
+          else if (segs[0] === 'login') page = 'login';
+          else if (segs[0] === 'register') page = 'register';
+          else if (segs[0] === 'forgot-password') page = 'forgot';
+          else if (segs[0] === 'dashboard') page = 'dashboard';
+          else if (segs[0] === 'profile') page = 'profile';
+
+          $$('[data-page]').forEach(el => el.classList.toggle('active', el.dataset.page === page));
+          const appShell = ['dashboard', 'profile'];
+          const noChrome = ['login', 'register', 'forgot', 'dashboard', 'profile'];
+          footer.classList.toggle('hidden', noChrome.includes(page));
+          $('#navbar').classList.toggle('hidden', appShell.includes(page));
+          $('#main').classList.toggle('pt-16', !appShell.includes(page));
+          setActiveNav(page === 'job' ? 'jobs' : page);
+          closeMenu();
+          closeDashNav();
+          toggleBell(false);
+
+          // page specific work
+          if (page === 'home') loadFeatured();
+          if (page === 'jobs') {
+            if (params.cat) { resetJobFilters(); jobState.cats.add(params.cat); jobState.page = 1; }
+            else if (params.q) { resetJobFilters(); jobState.q = params.q; jobState.page = 1; }
+            syncJobsUI();
+            renderJobs(true);
+            closeJobsFilters();
+          }
+          if (page === 'job') renderJobDetail(jobId);
+          if (page === 'register') {
+            $('#registerView').classList.remove('hidden');
+            $('#registerSuccess').classList.add('hidden');
+            const er = $('#registerError'); er.classList.add('hidden'); er.classList.remove('flex');
+          }
+
+          // scroll + focus
+          const scrollTarget = document.body.dataset.scrollTo;
+          if (scrollTarget) {
+            delete document.body.dataset.scrollTo;
+            setTimeout(() => {
+              const t = document.getElementById(scrollTarget);
+              if (t) t.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
+            }, 60);
+          } else {
+            window.scrollTo({ top: 0, behavior: 'auto' });
+          }
+          const heading = $('[data-page="' + page + '"] h1');
+          if (heading && page !== 'home') setTimeout(() => heading.focus(), 80);
+          $('#liveRegion').textContent = 'Navigated to ' + page;
+          revealVisible();
+        }
+
+        /* ---------- In-app navigation (sandbox safe) ---------- */
+        function navigate(hash, scrollTo) {
+          if (scrollTo) document.body.dataset.scrollTo = scrollTo;
+          try { history.pushState(null, '', hash); } catch (e) { /* sandbox may block history */ }
+          route(hash);
+        }
+        // Intercept in-page route links during capture so the host sandbox never
+        // sees a navigation attempt (which would pop a link confirmation dialog).
+        document.addEventListener('click', function (e) {
+          const a = e.target.closest('a[href^="#/"]');
+          if (!a) return;
+          e.preventDefault();
+          e.stopImmediatePropagation();
+          navigate(a.getAttribute('href'), a.dataset.scrollTo);
+        }, true);
+        window.addEventListener('popstate', function () { route(location.hash); });
+
+        /* ---------- Reveal ---------- */
+        let io;
+        function revealVisible() {
+          const els = $$('[data-page].active .reveal');
+          if (reduceMotion || !('IntersectionObserver' in window)) { els.forEach(e => e.classList.add('is-visible')); return; }
+          if (!io) {
+            io = new IntersectionObserver(entries => {
+              entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('is-visible'); io.unobserve(en.target); } });
+            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+          }
+          els.forEach(e => { if (!e.classList.contains('is-visible')) io.observe(e); });
+        }
+
+        /* ---------- Counters ---------- */
+        function animateCounters() {
+          $$('[data-count]').forEach(el => {
+            const target = parseInt(el.dataset.count, 10), suffix = el.dataset.suffix || '';
+            if (reduceMotion) { el.textContent = target.toLocaleString() + suffix; return; }
+            const dur = 1300, start = performance.now();
+            function tick(now) {
+              const p = Math.min((now - start) / dur, 1), eased = 1 - Math.pow(1 - p, 3);
+              el.textContent = Math.floor(eased * target).toLocaleString() + suffix;
+              if (p < 1) requestAnimationFrame(tick); else el.textContent = target.toLocaleString() + suffix;
+            }
+            requestAnimationFrame(tick);
+          });
+        }
+
+        /* ---------- Mobile menu ---------- */
+        const menuBtn = $('#menuBtn'), mobileMenu = $('#mobileMenu'), menuIcon = $('#menuIcon'), closeIcon = $('#closeIcon');
+        function setMenu(open) {
+          mobileMenu.classList.toggle('hidden', !open);
+          menuIcon.classList.toggle('hidden', open);
+          closeIcon.classList.toggle('hidden', !open);
+          menuBtn.setAttribute('aria-expanded', String(open));
+          menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        }
+        function closeMenu() { setMenu(false); }
+        menuBtn.addEventListener('click', () => setMenu(mobileMenu.classList.contains('hidden')));
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeMenu(); closeDoc(); } });
+
+        /* ---------- Global click handling ---------- */
+        document.addEventListener('click', e => {
+          const scrollLink = e.target.closest('[data-scroll-to]');
+          if (scrollLink) { document.body.dataset.scrollTo = scrollLink.dataset.scrollTo; }
+
+          const toggle = e.target.closest('[data-toggle-pw]');
+          if (toggle) {
+            const input = document.getElementById(toggle.dataset.togglePw);
+            const show = input.type === 'password';
+            input.type = show ? 'text' : 'password';
+            toggle.setAttribute('aria-pressed', String(show));
+            toggle.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+            $('.eye', toggle).classList.toggle('hidden', show);
+            $('.eye-off', toggle).classList.toggle('hidden', !show);
+          }
+
+          const google = e.target.closest('[data-google]');
+          if (google) { btnLoading(google, true, 'Connecting'); setTimeout(() => { btnLoading(google, false); toast('Google sign in is a demo here.'); }, 1000); }
+
+          const applyDetail = e.target.closest('[data-apply-detail]');
+          if (applyDetail) { const id = applyDetail.dataset.applyDetail; btnLoading(applyDetail, true, 'Submitting'); setTimeout(() => { appliedJobs.add(id); renderJobDetail(id); toast('Application sent. Good luck.'); }, 1000); }
+
+          const saveDetail = e.target.closest('[data-save-detail]');
+          if (saveDetail) {
+            const id = saveDetail.dataset.saveDetail;
+            const i = savedJobs.indexOf(id);
+            if (i >= 0) { savedJobs.splice(i, 1); toast('Removed from saved.'); } else { savedJobs.push(id); toast('Saved to your list.'); }
+            renderJobDetail(id); renderSaved(); updateDashStats();
+          }
+
+          const shareDetail = e.target.closest('[data-share-detail]');
+          if (shareDetail) {
+            const url = location.href;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(url).then(() => toast('Link copied to clipboard.')).catch(() => toast('Copy this link: ' + url));
+            } else { toast('Copy this link: ' + url); }
+          }
+
+          const docBtn = e.target.closest('[data-doc]');
+          if (docBtn) openDoc(docBtn.dataset.doc);
+          const docClose = e.target.closest('[data-doc-close]');
+          if (docClose) closeDoc();
+
+          const toastBtn = e.target.closest('[data-toast]');
+          if (toastBtn) toast(toastBtn.dataset.toast);
+
+          const unsave = e.target.closest('[data-unsave]');
+          if (unsave) {
+            savedJobs = savedJobs.filter(id => id !== unsave.dataset.unsave);
+            renderSaved(); updateDashStats(); toast('Removed from saved.');
+          }
+
+          const markRead = e.target.closest('[data-mark-read]');
+          if (markRead) { notifications.forEach(n => (n.unread = false)); renderNotifs(); updateDashStats(); }
+
+          if (e.target.closest('#bellBtn')) { toggleBell(); }
+          else if (!e.target.closest('#bellMenu')) { toggleBell(false); }
+
+          const addBtn = e.target.closest('[data-add]');
+          if (addBtn) addProfRow(addBtn.dataset.add);
+          const addSkillBtn = e.target.closest('[data-add-skill]');
+          if (addSkillBtn) addSkillFromInput();
+          const remRow = e.target.closest('[data-remove-row]');
+          if (remRow) { const r = remRow.closest('[data-row]'); if (r) r.remove(); }
+          const remChip = e.target.closest('[data-remove-chip]');
+          if (remChip) { const c = remChip.closest('[data-chip]'); if (c) c.remove(); }
+          const remResume = e.target.closest('[data-remove-resume]');
+          if (remResume) { const f = $('#resumeFile'); f.classList.add('hidden'); f.classList.remove('flex'); $('#resumeInput').value = ''; }
+          const chooseResume = e.target.closest('[data-choose-resume]');
+          if (chooseResume) $('#resumeInput').click();
+          const avatarBtn = e.target.closest('[data-avatar]');
+          if (avatarBtn) $('#avatarInput').click();
+          const saveProfile = e.target.closest('[data-save-profile]');
+          if (saveProfile) {
+            btnLoading(saveProfile, true, 'Saving');
+            setTimeout(() => { btnLoading(saveProfile, false); toast('Profile saved.'); const ps = $('#profileSaved'); if (ps) { ps.textContent = 'Saved just now'; ps.classList.remove('hidden'); } }, 900);
+          }
+
+          // Jobs listing
+          const bm = e.target.closest('[data-bookmark]');
+          if (bm) {
+            const id = bm.dataset.bookmark;
+            const i = savedJobs.indexOf(id);
+            if (i >= 0) { savedJobs.splice(i, 1); toast('Removed from saved.'); }
+            else { savedJobs.push(id); toast('Saved to your list.'); }
+            const on = savedJobs.includes(id);
+            bm.setAttribute('aria-pressed', String(on));
+            bm.setAttribute('aria-label', on ? 'Remove bookmark' : 'Bookmark this job');
+            bm.innerHTML = bookmarkIcon(on);
+            renderSaved(); updateDashStats();
+          }
+          const aj = e.target.closest('[data-apply-job]');
+          if (aj) { const id = aj.dataset.applyJob; btnLoading(aj, true, 'Applying'); setTimeout(() => { appliedJobs.add(id); renderJobs(false); toast('Application sent. Good luck.'); }, 900); }
+          const pn = e.target.closest('[data-page-num]');
+          if (pn) { jobState.page = parseInt(pn.dataset.pageNum, 10); renderJobs(false); scrollResultsTop(); }
+          if (e.target.closest('[data-page-prev]') && !e.target.closest('[data-page-prev]').disabled) { jobState.page = Math.max(1, jobState.page - 1); renderJobs(false); scrollResultsTop(); }
+          if (e.target.closest('[data-page-next]') && !e.target.closest('[data-page-next]').disabled) { jobState.page = jobState.page + 1; renderJobs(false); scrollResultsTop(); }
+          const rmF = e.target.closest('[data-remove-filter]');
+          if (rmF) { const g = rmF.dataset.removeFilter; if (g === 'q') jobState.q = ''; else jobState[g].delete(rmF.dataset.value); jobState.page = 1; syncJobsUI(); renderJobs(false); }
+          if (e.target.closest('#clearFilters') || e.target.closest('[data-clear-filters]')) clearJobFilters();
+          if (e.target.closest('[data-jobs-filter-toggle]')) openJobsFilters();
+          if (e.target.closest('[data-jobs-filter-close]') || e.target.closest('#jobsFilterBackdrop')) closeJobsFilters();
+        });
+
+        /* ---------- Forms ---------- */
+        // Home search -> jobs
+        $('#homeSearchForm').addEventListener('submit', e => {
+          e.preventDefault();
+          const btn = $('#homeSearchBtn');
+          btnLoading(btn, true);
+          resetJobFilters();
+          jobState.q = $('#homeQ').value.trim();
+          const ty = $('#homeType').value; if (ty) jobState.types.add(ty);
+          jobState.page = 1; jobState.sort = 'newest';
+          setTimeout(() => { btnLoading(btn, false); navigate('#/jobs'); }, reduceMotion ? 0 : 700);
+        });
+        // Jobs page search
+        $('#jobsSearchForm').addEventListener('submit', e => {
+          e.preventDefault();
+          const btn = $('#jobsSearchBtn');
+          btnLoading(btn, true);
+          jobState.q = $('#jobsQ').value.trim(); jobState.page = 1;
+          setTimeout(() => { btnLoading(btn, false); renderJobs(false); }, reduceMotion ? 0 : 500);
+        });
+        // Filter checkboxes + sort
+        document.addEventListener('change', e => {
+          const cb = e.target.closest('[data-filter]');
+          if (cb) { const k = cb.dataset.filter; if (cb.checked) jobState[k].add(cb.value); else jobState[k].delete(cb.value); jobState.page = 1; renderJobs(false); }
+          const sort = e.target.closest('#jobsSort');
+          if (sort) { jobState.sort = sort.value; jobState.page = 1; renderJobs(false); }
+        });
+
+        // Login
+        $('#loginForm').addEventListener('submit', e => {
+          e.preventDefault();
+          const form = e.currentTarget;
+          if (!validate(form, { email: rules.email, password: rules.password })) return;
+          const btn = $('button[type="submit"]', form);
+          btnLoading(btn, true, 'Signing in');
+          setTimeout(() => { btnLoading(btn, false); toast('Signed in. Welcome back.'); navigate('#/dashboard'); }, 1000);
+        });
+        // Register
+        $('#registerForm').addEventListener('submit', e => {
+          e.preventDefault();
+          const form = e.currentTarget;
+          const errBox = $('#registerError');
+          errBox.classList.add('hidden'); errBox.classList.remove('flex');
+          const name = $('#regName').value.trim();
+          const email = $('#regEmail').value.trim();
+          const mobile = $('#regMobile').value.trim();
+          const pw = $('#regPassword').value;
+          const confirmPw = $('#regConfirm').value;
+          const terms = $('#regTerms').checked;
+          const digits = mobile.replace(/\D/g, '');
+          const score = pwScore(pwChecks(pw));
+          let ok = true, firstBad = null;
+          function set(nm, msg, el) { showErr(form, nm, msg); if (msg && !firstBad) firstBad = el; if (msg) ok = false; }
+          set('name', !name ? 'Name is required' : name.length < 2 ? 'Name is too short' : '', $('#regName'));
+          set('email', !email ? 'Email is required' : !emailRe.test(email) ? 'Enter a valid email address' : '', $('#regEmail'));
+          set('mobile', !mobile ? 'Mobile number is required' : (digits.length < 10 || digits.length > 15) ? 'Enter a valid mobile number' : '', $('#regMobile'));
+          set('password', !pw ? 'Password is required' : pw.length < 8 ? 'Password must be at least 8 characters' : score < 2 ? 'Use a stronger password (mix letters, numbers, or symbols)' : '', $('#regPassword'));
+          set('confirm', !confirmPw ? 'Re-enter your password' : confirmPw !== pw ? 'Passwords do not match' : '', $('#regConfirm'));
+          set('terms', !terms ? 'Please accept the terms to continue' : '', $('#regTerms'));
+          if (!ok) { if (firstBad) firstBad.focus(); return; }
+
+          const btn = $('button[type="submit"]', form);
+          btnLoading(btn, true, 'Creating');
+          setTimeout(() => {
+            btnLoading(btn, false);
+            // No backend. Simulate a server check: emails containing "taken" fail.
+            if (email.toLowerCase().includes('taken')) {
+              $('#registerErrorMsg').textContent = 'An account with this email already exists.';
+              errBox.classList.remove('hidden'); errBox.classList.add('flex');
+              $('#liveRegion').textContent = 'Registration failed';
+              errBox.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
+              return;
+            }
+            $('#registerView').classList.add('hidden');
+            const s = $('#registerSuccess'); s.classList.remove('hidden');
+            $('#liveRegion').textContent = 'Account created';
+            const h = $('h1', s); if (h) h.focus();
+            toast('Account created.');
+          }, 1100);
+        });
+        // Forgot
+        $('#forgotForm').addEventListener('submit', e => {
+          e.preventDefault();
+          const form = e.currentTarget;
+          if (!validate(form, { email: rules.email })) return;
+          const btn = $('button[type="submit"]', form);
+          btnLoading(btn, true, 'Sending');
+          setTimeout(() => { btnLoading(btn, false); toast('Reset link sent. Check your inbox.'); navigate('#/login'); }, 1000);
+        });
+        // Newsletter
+        $('#newsletter').addEventListener('submit', e => {
+          e.preventDefault();
+          const v = $('#newsEmail').value, msg = $('#newsMsg');
+          msg.classList.remove('hidden');
+          if (v && emailRe.test(v)) { msg.textContent = 'Thanks. We will send roles that match.'; $('#newsEmail').value = ''; }
+          else msg.textContent = 'Enter a valid email to continue.';
+        });
+
+        /* ---------- Navbar scroll state ---------- */
+        const navbar = $('#navbar');
+        function onScroll() {
+          const on = window.scrollY > 12;
+          navbar.classList.toggle('border-line', on);
+          navbar.classList.toggle('bg-paper/90', on);
+          navbar.classList.toggle('backdrop-blur', on);
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+
+        /* ---------- Boot ---------- */
+        window.addEventListener('hashchange', function () { route(location.hash); });
+        onScroll();
+        route(location.hash || '#/');
+        animateCounters();
+      })();
+    </script>
+  </body>
+</html>
