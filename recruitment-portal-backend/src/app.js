@@ -21,10 +21,25 @@ app.disable('x-powered-by');
 // Security headers.
 app.use(helmet());
 
+// Origins allowed to call the API from a browser with credentials. Built-in
+// defaults cover local dev and the deployed frontend; CORS_ORIGIN (comma-
+// separated) can add more without a code change.
+const DEFAULT_ALLOWED_ORIGINS = [
+  'http://localhost:3000',
+  'https://job-portal-sable-sigma.vercel.app',
+];
+const allowedOrigins = Array.from(new Set([...DEFAULT_ALLOWED_ORIGINS, ...env.CORS_ORIGIN]));
+
 // CORS with credentials so the browser can send the auth cookie.
 app.use(
   cors({
-    origin: env.CORS_ORIGIN,
+    origin(origin, callback) {
+      // Allow non-browser requests (no Origin header) and any whitelisted origin.
+      // Disallowed origins get no CORS headers (browser blocks them) rather than
+      // a server error.
+      if (!origin || allowedOrigins.includes(origin)) return callback(null, true);
+      return callback(null, false);
+    },
     credentials: true,
   }),
 );

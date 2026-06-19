@@ -19,7 +19,16 @@ const envSchema = z.object({
   OTP_TTL_MINUTES: z.coerce.number().int().positive().default(10),
 
   BCRYPT_SALT_ROUNDS: z.coerce.number().int().min(8).max(15).default(12),
-  CORS_ORIGIN: z.string().default('http://localhost:3000'),
+  // One or more allowed browser origins, comma-separated. Parsed into an array.
+  CORS_ORIGIN: z
+    .string()
+    .default('http://localhost:3000')
+    .transform((value) =>
+      value
+        .split(',')
+        .map((origin) => origin.trim().replace(/\/$/, ''))
+        .filter(Boolean),
+    ),
 
   // When false, registration activates the account immediately and logs the
   // user in, skipping the email OTP step. Flip to true once a real email
